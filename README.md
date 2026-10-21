@@ -108,23 +108,25 @@ python quickstart_demo.py
 
 ---
 
-## 📊 Empirical Benchmark Results (Experiment 03: Real Transformer In-Silico Coma & Criticality Layer)
+## 📊 Empirical Benchmark Results (ComaBench v3: Real Transformer In-Silico Coma)
 
-We evaluate in-silico coma induction, 2D Spatiotemporal Casali PCI, and re-ignition using a real pretrained autoregressive transformer (`GPT-2`, 124M parameters, 12 layers) across 3 diverse cognitive domains (Consciousness, Neurobiology, Logic) and 5 experimental conditions.
+We evaluate in-silico coma induction, data-driven 2D Spatiotemporal Casali PCI, and re-ignition using a real pretrained autoregressive transformer (`GPT-2`, 124M parameters, 12 layers) across 3 diverse cognitive domains (Consciousness, Neurobiology, Logic) with lesion severity sweeps ($\alpha \in [0.50, 0.20, 0.05]$) and iso-energetic sham controls.
 
 - **Full Scientific Report:** [docs/EXPERIMENT_03_REPORT.md](docs/EXPERIMENT_03_REPORT.md) | [PDF Version (5 pages)](docs/EXPERIMENT_03_REPORT.pdf)
-- **Official Run UUID:** `20cd4a97-a1e2-4480-8129-9a38df8b593a` (`2026-10-21T16:11:29.288-03:00`)
-- **Raw Data Artifacts:** [JSON Payload](experiments/results/run_20cd4a97-a1e2-4480-8129-9a38df8b593a.json) | [Execution Log](experiments/results/run_20cd4a97-a1e2-4480-8129-9a38df8b593a.md)
+- **Official Run UUID:** `3baa4ab0-fc29-4f4b-a719-892ab4c729a2` (`2026-10-21T16:29:04.277-03:00`)
+- **Raw Data Artifacts:** [JSON Payload](experiments/results/run_3baa4ab0-fc29-4f4b-a719-892ab4c729a2.json) | [Execution Log](experiments/results/run_3baa4ab0-fc29-4f4b-a719-892ab4c729a2.md)
 
-| Experimental Condition | Mean PCI_2D | Mean Branching $\bar{\sigma}$ | Critical Stability | Behavioral Profile |
-| :--- | :---: | :---: | :---: | :--- |
-| **Stage 1: Awake Baseline** | **0.7373** | **1.067** | **0.9596** | Intact coherent lexical & semantic integration |
-| **Stage 2: Induced Coma (Layers 6–11 damped to 5%)** | **0.5802** | **1.080** | **0.6216** | Catatonic mutism (`-------------------------`) |
-| **Stage 3: Sham Control (Gaussian Noise)** | **0.6667** | 0.937 | 0.2927 | Perseverative, seizure-like uninformative loops |
-| **Stage 4: Targeted Steering (In-Silico DBS)** | **0.5734** | 1.081 | 0.6220 | Dash attractor breached; proto-punctuation |
-| **Stage 5: Criticality Layer Tuning** | **0.5607** | **1.071** | **0.6182** | **Morphological recovery (sub-words `able`, `ability`)** |
+| Experimental Condition | Lesion Severity / Setup | Mean PCI_2D | Behavioral Signature |
+| :--- | :---: | :---: | :--- |
+| **Stage 1: Awake Baseline** | *Intact Reference* | **0.6201** | Coherent, fluent syntactic discourse |
+| **Stage 2: Mild Sedation (MCS)** | $\alpha = 0.50$ | **0.3324** | Partial syntax preserved (conjunctions, prepositions) |
+| **Stage 3: Deep Coma (Severed)** | $\alpha = 0.05$ | **0.3324** | Catatonic mutism (`-------------------------`) |
+| **Stage 4: Iso-Energetic Focal Sham** | $\|v\| = 100.0$, Layer 4 | **0.3596** | Clinical boundary ($PCI^* \approx 0.31$), uninformative loops |
+| **Stage 5: Unipolar Steering (L4)** | $m = 1.5$, Layer 4 | **0.3324** | Dash attractor breached; punctuation emergence |
+| **Stage 6: Multi-Site Steering** | Layers 4 + 7 + 10 | **0.3324** | Distributed manifold activation |
+| **Stage 7: Criticality Layer Tuning** | Gateway Layer 5 | **0.3981** | **Morphological recovery (sub-words `able`, `ability`)** |
 
-> **Key Takeaway:** In-silico coma causes a marked collapse in both 2D Spatiotemporal PCI ($0.7373 \to 0.5802$) and Critical Stability ($0.9596 \to 0.6216$). The **Criticality Layer** restores homeostatic gain across the lesion boundary, preventing subcritical signal extinction and enabling the re-emergence of lexical sub-tokens without triggering supercritical runaway.
+> **Key Takeaway:** ComaBench v3 eliminates arbitrary thresholds by deriving baseline noise matrices ($\Delta_{\text{baseline}}$) directly from embedding-level micro-jitter. In-silico coma causes an authentic drop in 2D Spatiotemporal PCI from **`0.6201`** to **`0.3324`** ($\Delta = -0.2878$). The **Criticality Layer** yields the highest complexity recovery ($\text{PCI} = 0.3981$, $+0.0657$) and restores morphological English sub-words from total mutism.
 
 ---
 

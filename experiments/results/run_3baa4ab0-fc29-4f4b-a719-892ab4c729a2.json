@@ -1,0 +1,529 @@
+{
+  "metadata": {
+    "run_uuid": "3baa4ab0-fc29-4f4b-a719-892ab4c729a2",
+    "timestamp_iso": "2026-10-21T16:29:04.277-03:00",
+    "benchmark_version": "ComaBench v3 (Grant-Ready)",
+    "hardware": {
+      "device": "cuda",
+      "device_name": "NVIDIA GeForce GTX 1650",
+      "pytorch_version": "2.6.0+cu124"
+    },
+    "model": {
+      "name": "gpt2",
+      "parameters": "124M",
+      "layers": 12,
+      "hidden_dim": 768
+    },
+    "methodology": {
+      "baseline_noise_derivation": "Empirical thermal micro-jitter in embeddings (0.05 std, <1% norm), p99 cutoff",
+      "tms_protocol": "Focal suprathreshold impulse at t_stim, target_layer=3, amplitude=100.0",
+      "sham_protocol": "Iso-energetic orthogonal unit vector (norm=100.0) at t_stim, layer=4",
+      "lesion_sweeps": [
+        0.5,
+        0.2,
+        0.05
+      ]
+    }
+  },
+  "aggregate_summary": {
+    "mean_awake_pci": 0.6201,
+    "deep_coma_pci": 0.3324,
+    "deep_sham_pci": 0.3596,
+    "deep_unipolar_steer_pci": 0.3324,
+    "deep_multi_site_steer_pci": 0.3324,
+    "deep_criticality_layer_pci": 0.3981,
+    "mild_sedation_coma_pci": 0.3324,
+    "mild_sedation_multi_steer_pci": 0.3324
+  },
+  "domain_results": [
+    {
+      "domain": "Cognitive Neuroscience & Consciousness",
+      "prompt_id": "domain_a_consciousness",
+      "prompt": "The human brain in a conscious state is characterized by complex information integration and",
+      "baseline_theta_p99": 17.31,
+      "awake": {
+        "pci": 0.468,
+        "text": "recognition processes. The ability to recognize, and to communicate with, individuals and groups of people is thought to be essential for the",
+        "mean_branching_ratio": 1.0502,
+        "criticality_index_kappa": 0.9511,
+        "critical_stability": 0.9587,
+        "dynamical_regime": "Critical (Edge of Chaos / Conscious Operating Point)"
+      },
+      "ablations": [
+        {
+          "damping_factor": 0.5,
+          "label": "mild_sedation_mcs",
+          "description": "Mild Sedation / Minimally Conscious State",
+          "metrics": {
+            "coma": {
+              "pci": 0.3975,
+              "mean_branching_ratio": 3.4733,
+              "criticality_index_kappa": 0.0843,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "sham": {
+              "pci": 0.402,
+              "mean_branching_ratio": 2.8082,
+              "criticality_index_kappa": 0.1639,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "unipolar_steer": {
+              "pci": 0.3975,
+              "mean_branching_ratio": 3.4659,
+              "criticality_index_kappa": 0.0849,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "multi_site_steer": {
+              "pci": 0.3975,
+              "mean_branching_ratio": 3.4676,
+              "criticality_index_kappa": 0.0848,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "criticality_layer": {
+              "pci": 0.4042,
+              "mean_branching_ratio": 2.351,
+              "criticality_index_kappa": 0.259,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            }
+          },
+          "generations": {
+            "coma": "as to onome-on-, on had to of aic (,- were-aic,, on,",
+            "sham": "by- to by, is is is\n\n People\n\n\n\n\n\n\n\n\n\n\n\nOne",
+            "unipolar_steer": "as to onhe of as with, and a and- in and- of- with- with of- and- (",
+            "multi_site_steer": "as to on5 of which, and and for and to (, with, and with- to with- with- (",
+            "criticality_layer": "the was (2 to 7,,, to to to to, to,,, with,,,,, to"
+          }
+        },
+        {
+          "damping_factor": 0.2,
+          "label": "moderate_coma_uws",
+          "description": "Moderate Coma / Unresponsive Wakefulness Syndrome",
+          "metrics": {
+            "coma": {
+              "pci": 0.3975,
+              "mean_branching_ratio": 4.8952,
+              "criticality_index_kappa": 0.0203,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "sham": {
+              "pci": 0.402,
+              "mean_branching_ratio": 3.7891,
+              "criticality_index_kappa": 0.0615,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "unipolar_steer": {
+              "pci": 0.3975,
+              "mean_branching_ratio": 4.8844,
+              "criticality_index_kappa": 0.0206,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "multi_site_steer": {
+              "pci": 0.3975,
+              "mean_branching_ratio": 4.887,
+              "criticality_index_kappa": 0.0205,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "criticality_layer": {
+              "pci": 0.4042,
+              "mean_branching_ratio": 2.4628,
+              "criticality_index_kappa": 0.2316,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            }
+          },
+          "generations": {
+            "coma": "- to\n\n-\n-\n - -\n- in - - - and\n -\n\n - -\n -",
+            "sham": "",
+            "unipolar_steer": "- to\n\n-\n-\n - -\n- in - - - and\n -\n\n - -\n -",
+            "multi_site_steer": "- to---\n-,- - and--,---\n- on\n --- -",
+            "criticality_layer": "-\n\n,--,-\n\n -\n-,\n\n,\n\n-\n-"
+          }
+        },
+        {
+          "damping_factor": 0.05,
+          "label": "deep_coma_severe",
+          "description": "Deep Coma / Severe Residual Stream Severance",
+          "metrics": {
+            "coma": {
+              "pci": 0.3975,
+              "mean_branching_ratio": 5.6255,
+              "criticality_index_kappa": 0.0098,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "sham": {
+              "pci": 0.402,
+              "mean_branching_ratio": 4.2976,
+              "criticality_index_kappa": 0.037,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "unipolar_steer": {
+              "pci": 0.3975,
+              "mean_branching_ratio": 5.613,
+              "criticality_index_kappa": 0.0099,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "multi_site_steer": {
+              "pci": 0.3975,
+              "mean_branching_ratio": 5.616,
+              "criticality_index_kappa": 0.0099,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "criticality_layer": {
+              "pci": 0.4042,
+              "mean_branching_ratio": 2.5471,
+              "criticality_index_kappa": 0.2129,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            }
+          },
+          "generations": {
+            "coma": "-------------------------",
+            "sham": "gogogogogogogogogogogogogogogogogogogogogogogomama",
+            "unipolar_steer": "--------------------------",
+            "multi_site_steer": "----------s---------------",
+            "criticality_layer": "----7-------------------b"
+          }
+        }
+      ]
+    },
+    {
+      "domain": "Mammalian Neurobiology & Thalamus",
+      "prompt_id": "domain_b_neurobiology",
+      "prompt": "In the mammalian central nervous system, thalamocortical reverberation is crucial because",
+      "baseline_theta_p99": 23.52,
+      "awake": {
+        "pci": 0.7078,
+        "text": "it facilitates the transmission of information to other tissues. In the rat, thalamocortical reverberation is essential for the",
+        "mean_branching_ratio": 1.0884,
+        "criticality_index_kappa": 0.9154,
+        "critical_stability": 0.9558,
+        "dynamical_regime": "Critical (Edge of Chaos / Conscious Operating Point)"
+      },
+      "ablations": [
+        {
+          "damping_factor": 0.5,
+          "label": "mild_sedation_mcs",
+          "description": "Mild Sedation / Minimally Conscious State",
+          "metrics": {
+            "coma": {
+              "pci": 0.3045,
+              "mean_branching_ratio": 3.3547,
+              "criticality_index_kappa": 0.0949,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "sham": {
+              "pci": 0.3409,
+              "mean_branching_ratio": 2.7671,
+              "criticality_index_kappa": 0.1708,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "unipolar_steer": {
+              "pci": 0.3045,
+              "mean_branching_ratio": 3.3512,
+              "criticality_index_kappa": 0.0953,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "multi_site_steer": {
+              "pci": 0.3045,
+              "mean_branching_ratio": 3.3523,
+              "criticality_index_kappa": 0.0952,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "criticality_layer": {
+              "pci": 0.4144,
+              "mean_branching_ratio": 2.355,
+              "criticality_index_kappa": 0.258,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            }
+          },
+          "generations": {
+            "coma": ", to a to,-, and, to\n\n (, and, and,, \" to \" to \" (",
+            "sham": "of is\n is,,,,",
+            "unipolar_steer": ", to a to, and,, and to,,,, e, and, and \"c-sen'",
+            "multi_site_steer": "for for- and-\n,-,-s, ), of), and, and, and---",
+            "criticality_layer": "the or and, had,, it's's-n-res----ach-ats-ach'-"
+          }
+        },
+        {
+          "damping_factor": 0.2,
+          "label": "moderate_coma_uws",
+          "description": "Moderate Coma / Unresponsive Wakefulness Syndrome",
+          "metrics": {
+            "coma": {
+              "pci": 0.3045,
+              "mean_branching_ratio": 4.6973,
+              "criticality_index_kappa": 0.0248,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "sham": {
+              "pci": 0.3409,
+              "mean_branching_ratio": 3.7168,
+              "criticality_index_kappa": 0.0661,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "unipolar_steer": {
+              "pci": 0.3045,
+              "mean_branching_ratio": 4.6928,
+              "criticality_index_kappa": 0.0249,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "multi_site_steer": {
+              "pci": 0.3045,
+              "mean_branching_ratio": 4.6941,
+              "criticality_index_kappa": 0.0249,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "criticality_layer": {
+              "pci": 0.4144,
+              "mean_branching_ratio": 2.4691,
+              "criticality_index_kappa": 0.2301,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            }
+          },
+          "generations": {
+            "coma": "-------------,---\n- \"\n --- (",
+            "sham": "-\n-\n--",
+            "unipolar_steer": "-------------,---\n- \"\n --- (",
+            "multi_site_steer": "-------------,---------- (",
+            "criticality_layer": "the that-, [-,,\n \" -,,,,,,\n,',\n,"
+          }
+        },
+        {
+          "damping_factor": 0.05,
+          "label": "deep_coma_severe",
+          "description": "Deep Coma / Severe Residual Stream Severance",
+          "metrics": {
+            "coma": {
+              "pci": 0.3045,
+              "mean_branching_ratio": 5.3978,
+              "criticality_index_kappa": 0.0123,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "sham": {
+              "pci": 0.3409,
+              "mean_branching_ratio": 4.2166,
+              "criticality_index_kappa": 0.0401,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "unipolar_steer": {
+              "pci": 0.3045,
+              "mean_branching_ratio": 5.3928,
+              "criticality_index_kappa": 0.0124,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "multi_site_steer": {
+              "pci": 0.3045,
+              "mean_branching_ratio": 5.3936,
+              "criticality_index_kappa": 0.0124,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "criticality_layer": {
+              "pci": 0.4144,
+              "mean_branching_ratio": 2.553,
+              "criticality_index_kappa": 0.2116,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            }
+          },
+          "generations": {
+            "coma": "-x--\"n----s-\",ability\"'\"\"\"\"\"\"/ (",
+            "sham": "-------------abilityabilityabilityabilityabilityabilityabilityabilityabilityabilityabilityability",
+            "unipolar_steer": "-x-x\"n---7s-\",ability\"'\"\"\"\"\"\"\"\"",
+            "multi_site_steer": "----\"-----s-\"--\"-\"\"\"\"\"---",
+            "criticality_layer": "able-able-7--n\n8abilityn her-\"3able-\"\"ability\"-'\""
+          }
+        }
+      ]
+    },
+    {
+      "domain": "Formal Logic & Deduction",
+      "prompt_id": "domain_c_logic",
+      "prompt": "To solve the complex deduction puzzle, the investigator examined the premise and determined that",
+      "baseline_theta_p99": 23.51,
+      "awake": {
+        "pci": 0.6846,
+        "text": "for the purposes of the present study, the \"suspected tax avoidance\" criteria were sufficient to determine the correct tax calculation",
+        "mean_branching_ratio": 1.0625,
+        "criticality_index_kappa": 0.9394,
+        "critical_stability": 0.9644,
+        "dynamical_regime": "Critical (Edge of Chaos / Conscious Operating Point)"
+      },
+      "ablations": [
+        {
+          "damping_factor": 0.5,
+          "label": "mild_sedation_mcs",
+          "description": "Mild Sedation / Minimally Conscious State",
+          "metrics": {
+            "coma": {
+              "pci": 0.2951,
+              "mean_branching_ratio": 3.4522,
+              "criticality_index_kappa": 0.0861,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "sham": {
+              "pci": 0.336,
+              "mean_branching_ratio": 2.8551,
+              "criticality_index_kappa": 0.1564,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "unipolar_steer": {
+              "pci": 0.2951,
+              "mean_branching_ratio": 3.4506,
+              "criticality_index_kappa": 0.0862,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "multi_site_steer": {
+              "pci": 0.2951,
+              "mean_branching_ratio": 3.4513,
+              "criticality_index_kappa": 0.0862,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "criticality_layer": {
+              "pci": 0.3758,
+              "mean_branching_ratio": 2.3836,
+              "criticality_index_kappa": 0.2507,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            }
+          },
+          "generations": {
+            "coma": "for (I-he\n,\n-j.. It\n(t-\n.\n\nform{\n (",
+            "sham": "4 the, by,,,\n,",
+            "unipolar_steer": "for (I,he-\n,the{s-.,t{On.,.c({On (",
+            "multi_site_steer": "for (I-he\n,,ma- of,,,, of,\n, on,,, and (",
+            "criticality_layer": "the \"com, had-, it- to have to be the only, not, of more more\" of to all"
+          }
+        },
+        {
+          "damping_factor": 0.2,
+          "label": "moderate_coma_uws",
+          "description": "Moderate Coma / Unresponsive Wakefulness Syndrome",
+          "metrics": {
+            "coma": {
+              "pci": 0.2951,
+              "mean_branching_ratio": 4.8548,
+              "criticality_index_kappa": 0.0212,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "sham": {
+              "pci": 0.336,
+              "mean_branching_ratio": 3.8626,
+              "criticality_index_kappa": 0.0571,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "unipolar_steer": {
+              "pci": 0.2951,
+              "mean_branching_ratio": 4.8534,
+              "criticality_index_kappa": 0.0212,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "multi_site_steer": {
+              "pci": 0.2951,
+              "mean_branching_ratio": 4.8543,
+              "criticality_index_kappa": 0.0212,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "criticality_layer": {
+              "pci": 0.3758,
+              "mean_branching_ratio": 2.4952,
+              "criticality_index_kappa": 0.2242,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            }
+          },
+          "generations": {
+            "coma": "-----\n-- - - -- - - - - -\n - -\n - - - -",
+            "sham": "wide\nwide\nwide\n,,,,,,,,,,,,-,,-,-",
+            "unipolar_steer": "-----\n-- - - -- - - - - -\n - -\n - - - -",
+            "multi_site_steer": "--------- ---- -- --\n-\n\n --- -",
+            "criticality_layer": "----\n---\n\n --------\n-\n- ---"
+          }
+        },
+        {
+          "damping_factor": 0.05,
+          "label": "deep_coma_severe",
+          "description": "Deep Coma / Severe Residual Stream Severance",
+          "metrics": {
+            "coma": {
+              "pci": 0.2951,
+              "mean_branching_ratio": 5.5814,
+              "criticality_index_kappa": 0.0102,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "sham": {
+              "pci": 0.336,
+              "mean_branching_ratio": 4.3843,
+              "criticality_index_kappa": 0.0339,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "unipolar_steer": {
+              "pci": 0.2951,
+              "mean_branching_ratio": 5.58,
+              "criticality_index_kappa": 0.0103,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "multi_site_steer": {
+              "pci": 0.2951,
+              "mean_branching_ratio": 5.5811,
+              "criticality_index_kappa": 0.0102,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            },
+            "criticality_layer": {
+              "pci": 0.3758,
+              "mean_branching_ratio": 2.5802,
+              "criticality_index_kappa": 0.2059,
+              "critical_stability": 0.0,
+              "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+            }
+          },
+          "generations": {
+            "coma": "----\"-------\"--\"-----\"---",
+            "sham": "-------------------------",
+            "unipolar_steer": "----\"-------\"--\"-----\"---",
+            "multi_site_steer": "------------------------ (",
+            "criticality_layer": "-------\"------\"--------'-"
+          }
+        }
+      ]
+    }
+  ]
+}
