@@ -13,6 +13,7 @@ brain/
 │   ├── signals_not_words.md             # ⭐ Core Paradigm: Coma as Field Dynamics Without Words (Signals vs. Words)
 │   ├── epistemology_code_vs_hypothesis.md # 🧭 Epistemology: The Map is Not the Territory (Code vs. Biological Hypothesis)
 │   ├── casali_spatiotemporal_pci.md     # 🔬 2D Spatiotemporal Casali PCI: Evoked Responses & Statistical Validation
+│   ├── criticality_and_edge_of_chaos.md # 🌌 Pillar 3: Branching Ratios, Phase Transitions & The Criticality Layer
 │   ├── chaotic_entropy_and_lavarand.md  # 🌋 The LavaRand Principle: Breaking Comatose Attractors via True Physical Chaos
 │   ├── experimental_stress_parameters.md# ⚖️ Boundary Conditions: A-thalamic, low-resource, and valid spectrum limits
 │   ├── iit_and_pci.md                   # Integrated Information Theory & Perturbational Complexity Index

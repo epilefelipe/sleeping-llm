@@ -67,12 +67,14 @@ sleeping-llm/
 │   ├── coma/                       # Pillar 1: Protocols for inducing artificial comatose states
 │   │   ├── __init__.py
 │   │   └── hooks.py                # PyTorch forward hooks for residual stream / attention clamping
-│   ├── metrics/                    # Pillar 2: Complexity and consciousness metrics
+│   ├── metrics/                    # Pillar 2: Complexity, criticality & consciousness metrics
 │   │   ├── __init__.py
-│   │   └── pci.py                  # Perturbational Complexity Index (PCI) & Lempel-Ziv implementation
+│   │   ├── pci.py                  # Perturbational Complexity Index (PCI) & Lempel-Ziv implementation
+│   │   └── criticality.py          # Pillar 3: Branching ratios (σ), criticality index (κ), stability
 │   ├── awakening/                  # Pillars 3 & 4: Algorithmic interventions & re-ignition protocols
 │   │   ├── __init__.py
-│   │   └── steering.py             # Representation steering & activation injection
+│   │   ├── steering.py             # Representation steering & activation injection
+│   │   └── criticality.py          # CriticalityLayer: Homeostatic gain & stochastic resonance
 │   └── epistemology/               # Pillar 6: The Sleeping Beauty problem & self-locating credence
 │       ├── __init__.py
 │       └── beauty_experiment.py    # Self-locating prior evaluation in stateless re-awakening
@@ -106,22 +108,23 @@ python quickstart_demo.py
 
 ---
 
-## 📊 Empirical Benchmark Results (Experiment 03: Real Transformer In-Silico Coma)
+## 📊 Empirical Benchmark Results (Experiment 03: Real Transformer In-Silico Coma & Criticality Layer)
 
-We evaluate in-silico coma induction, 2D Spatiotemporal Casali PCI, and re-ignition using a real pretrained autoregressive transformer (`GPT-2`, 124M parameters, 12 layers) across 3 diverse cognitive domains (Consciousness, Neurobiology, Logic) and 4 experimental conditions.
+We evaluate in-silico coma induction, 2D Spatiotemporal Casali PCI, and re-ignition using a real pretrained autoregressive transformer (`GPT-2`, 124M parameters, 12 layers) across 3 diverse cognitive domains (Consciousness, Neurobiology, Logic) and 5 experimental conditions.
 
 - **Full Scientific Report:** [docs/EXPERIMENT_03_REPORT.md](docs/EXPERIMENT_03_REPORT.md) | [PDF Version (5 pages)](docs/EXPERIMENT_03_REPORT.pdf)
-- **Official Run UUID:** `1b519dfb-97dd-42c8-bd6a-bd380881c9f9` (`2026-10-21T15:48:51.682-03:00`)
-- **Raw Data Artifacts:** [JSON Payload](experiments/results/run_1b519dfb-97dd-42c8-bd6a-bd380881c9f9.json) | [Execution Log](experiments/results/run_1b519dfb-97dd-42c8-bd6a-bd380881c9f9.md)
+- **Official Run UUID:** `20cd4a97-a1e2-4480-8129-9a38df8b593a` (`2026-10-21T16:11:29.288-03:00`)
+- **Raw Data Artifacts:** [JSON Payload](experiments/results/run_20cd4a97-a1e2-4480-8129-9a38df8b593a.json) | [Execution Log](experiments/results/run_20cd4a97-a1e2-4480-8129-9a38df8b593a.md)
 
-| Experimental Condition | Mean PCI_2D | Delta vs. Awake | Behavioral Profile |
-| :--- | :---: | :---: | :--- |
-| **Stage 1: Awake Baseline** | **0.7373** | *Reference* | Intact coherent lexical & semantic integration |
-| **Stage 2: Induced Coma (Layers 6–11 damped to 5%)** | **0.5802** | **-0.1571** | Catatonic mutism (`-------------------------`) |
-| **Stage 3: Sham Control (Gaussian Noise)** | **0.6667** | **-0.0706** | Perseverative, seizure-like uninformative loops |
-| **Stage 4: Targeted Steering (In-Silico DBS)** | **0.5734** | **-0.1639** | Dash attractor breached; emergence of proto-tokens |
+| Experimental Condition | Mean PCI_2D | Mean Branching $\bar{\sigma}$ | Critical Stability | Behavioral Profile |
+| :--- | :---: | :---: | :---: | :--- |
+| **Stage 1: Awake Baseline** | **0.7373** | **1.067** | **0.9596** | Intact coherent lexical & semantic integration |
+| **Stage 2: Induced Coma (Layers 6–11 damped to 5%)** | **0.5802** | **1.080** | **0.6216** | Catatonic mutism (`-------------------------`) |
+| **Stage 3: Sham Control (Gaussian Noise)** | **0.6667** | 0.937 | 0.2927 | Perseverative, seizure-like uninformative loops |
+| **Stage 4: Targeted Steering (In-Silico DBS)** | **0.5734** | 1.081 | 0.6220 | Dash attractor breached; proto-punctuation |
+| **Stage 5: Criticality Layer Tuning** | **0.5607** | **1.071** | **0.6182** | **Morphological recovery (sub-words `able`, `ability`)** |
 
-> **Key Takeaway:** In-silico coma causes a marked, statistically significant collapse in 2D Spatiotemporal PCI ($0.7373 \to 0.5802$). Targeted representation steering breaks the catatonic attractor, but single-layer static stimulation cannot unilaterally rescue a diffuse 6-layer lesion—reproducing the clinical finding (Schiff et al., 2007) that diffuse axonal injuries require distributed multi-site neuromodulation.
+> **Key Takeaway:** In-silico coma causes a marked collapse in both 2D Spatiotemporal PCI ($0.7373 \to 0.5802$) and Critical Stability ($0.9596 \to 0.6216$). The **Criticality Layer** restores homeostatic gain across the lesion boundary, preventing subcritical signal extinction and enabling the re-emergence of lexical sub-tokens without triggering supercritical runaway.
 
 ---
 

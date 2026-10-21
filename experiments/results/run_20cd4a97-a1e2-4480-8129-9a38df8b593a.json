@@ -1,0 +1,178 @@
+{
+  "metadata": {
+    "run_uuid": "20cd4a97-a1e2-4480-8129-9a38df8b593a",
+    "timestamp_iso": "2026-10-21T16:11:29.288-03:00",
+    "hardware": {
+      "device": "cuda",
+      "device_name": "NVIDIA GeForce GTX 1650",
+      "pytorch_version": "2.6.0+cu124"
+    },
+    "model": {
+      "name": "gpt2",
+      "parameters": "124M",
+      "layers": 12,
+      "hidden_dim": 768
+    },
+    "experiment": "Experiment 03: Multi-Domain In-Silico Coma, Casali PCI & Criticality Layer Benchmark",
+    "clinical_analogy": "Casali et al. (2013) TMS-EEG, Schiff et al. (2007) Central Thalamic DBS, Beggs & Plenz (2003) Criticality"
+  },
+  "aggregate_metrics": {
+    "mean_awake_pci": 0.7373,
+    "mean_coma_pci": 0.5802,
+    "mean_sham_pci": 0.6667,
+    "mean_steered_pci": 0.5734,
+    "mean_criticality_layer_pci": 0.5607,
+    "mean_awake_critical_stability": 0.9596,
+    "mean_coma_critical_stability": 0.6216,
+    "mean_criticality_layer_stability": 0.6182
+  },
+  "domain_results": [
+    {
+      "prompt_id": "domain_a_consciousness",
+      "domain": "Cognitive Neuroscience & Consciousness",
+      "prompt": "The human brain in a conscious state is characterized by complex information integration and",
+      "metrics": {
+        "awake": {
+          "pci": 0.7437,
+          "mean_branching_ratio": 1.0502,
+          "criticality_index_kappa": 0.9511,
+          "critical_stability": 0.9587,
+          "dynamical_regime": "Critical (Edge of Chaos / Conscious Operating Point)"
+        },
+        "coma": {
+          "pci": 0.5304,
+          "mean_branching_ratio": 1.0624,
+          "criticality_index_kappa": 0.9395,
+          "critical_stability": 0.8486,
+          "dynamical_regime": "Critical (Edge of Chaos / Conscious Operating Point)"
+        },
+        "sham": {
+          "pci": 1.0,
+          "mean_branching_ratio": 1.2333,
+          "criticality_index_kappa": 0.7919,
+          "critical_stability": 0.0001,
+          "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+        },
+        "steered": {
+          "pci": 0.5304,
+          "mean_branching_ratio": 1.0608,
+          "criticality_index_kappa": 0.941,
+          "critical_stability": 0.853,
+          "dynamical_regime": "Critical (Edge of Chaos / Conscious Operating Point)"
+        },
+        "criticality_layer": {
+          "pci": 0.5899,
+          "mean_branching_ratio": 1.0465,
+          "criticality_index_kappa": 0.9545,
+          "critical_stability": 0.6816,
+          "dynamical_regime": "Critical (Edge of Chaos / Conscious Operating Point)"
+        }
+      },
+      "generations": {
+        "awake": "recognition processes. The ability to recognize, and to communicate with, individuals and groups of people is thought to be essential for the",
+        "coma": "-------------------------",
+        "sham": "-------------------------",
+        "steered": "------------------------b",
+        "criticality_layer": "----7-------------------b"
+      }
+    },
+    {
+      "prompt_id": "domain_b_neurobiology",
+      "domain": "Mammalian Neurobiology & Thalamus",
+      "prompt": "In the mammalian central nervous system, thalamocortical reverberation is crucial because",
+      "metrics": {
+        "awake": {
+          "pci": 0.6988,
+          "mean_branching_ratio": 1.0884,
+          "criticality_index_kappa": 0.9154,
+          "critical_stability": 0.9558,
+          "dynamical_regime": "Critical (Edge of Chaos / Conscious Operating Point)"
+        },
+        "coma": {
+          "pci": 0.4551,
+          "mean_branching_ratio": 1.1501,
+          "criticality_index_kappa": 0.8606,
+          "critical_stability": 0.7873,
+          "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+        },
+        "sham": {
+          "pci": 0.0,
+          "mean_branching_ratio": 0.7943,
+          "criticality_index_kappa": 0.8141,
+          "critical_stability": 0.4655,
+          "dynamical_regime": "Subcritical (Frozen / Comatose Attractor)"
+        },
+        "steered": {
+          "pci": 0.4551,
+          "mean_branching_ratio": 1.1492,
+          "criticality_index_kappa": 0.8614,
+          "critical_stability": 0.7833,
+          "dynamical_regime": "Critical (Edge of Chaos / Conscious Operating Point)"
+        },
+        "criticality_layer": {
+          "pci": 0.4096,
+          "mean_branching_ratio": 1.1505,
+          "criticality_index_kappa": 0.8603,
+          "critical_stability": 0.834,
+          "dynamical_regime": "Supercritical (Runaway / Seizure-like Attractor)"
+        }
+      },
+      "generations": {
+        "awake": "it facilitates the transmission of information to other tissues. In the rat, thalamocortical reverberation is essential for the",
+        "coma": "-x--\"n----s-\",ability\"'\"\"\"\"\"\"/ (",
+        "sham": "-------------------------",
+        "steered": "xxn-x-,n\"\"ability/ her,\"\",\"\"\",\"\"'\"",
+        "criticality_layer": "able-able-7--n\n8abilityn her-\"3able-\"\"ability\"-'\""
+      }
+    },
+    {
+      "prompt_id": "domain_c_logic",
+      "domain": "Formal Logic & Deduction",
+      "prompt": "To solve the complex deduction puzzle, the investigator examined the premise and determined that",
+      "metrics": {
+        "awake": {
+          "pci": 0.7694,
+          "mean_branching_ratio": 1.0625,
+          "criticality_index_kappa": 0.9394,
+          "critical_stability": 0.9644,
+          "dynamical_regime": "Critical (Edge of Chaos / Conscious Operating Point)"
+        },
+        "coma": {
+          "pci": 0.755,
+          "mean_branching_ratio": 1.0288,
+          "criticality_index_kappa": 0.9716,
+          "critical_stability": 0.2288,
+          "dynamical_regime": "Critical (Edge of Chaos / Conscious Operating Point)"
+        },
+        "sham": {
+          "pci": 1.0,
+          "mean_branching_ratio": 0.7851,
+          "criticality_index_kappa": 0.8066,
+          "critical_stability": 0.4124,
+          "dynamical_regime": "Subcritical (Frozen / Comatose Attractor)"
+        },
+        "steered": {
+          "pci": 0.7347,
+          "mean_branching_ratio": 1.0321,
+          "criticality_index_kappa": 0.9684,
+          "critical_stability": 0.2298,
+          "dynamical_regime": "Critical (Edge of Chaos / Conscious Operating Point)"
+        },
+        "criticality_layer": {
+          "pci": 0.6825,
+          "mean_branching_ratio": 1.0152,
+          "criticality_index_kappa": 0.9849,
+          "critical_stability": 0.3389,
+          "dynamical_regime": "Critical (Edge of Chaos / Conscious Operating Point)"
+        }
+      },
+      "generations": {
+        "awake": "for the purposes of the present study, the \"suspected tax avoidance\" criteria were sufficient to determine the correct tax calculation",
+        "coma": "----\"-------\"--\"-----\"---",
+        "sham": "-------------------------",
+        "steered": "-------\"\n-\"---\"---'----'-",
+        "criticality_layer": "-------\"------\"--------'-"
+      }
+    }
+  ]
+}
