@@ -21,7 +21,16 @@ Disorders of Consciousness (DoC)—such as traumatic coma, unresponsive wakefuln
 
 ---
 
-## 🏛️ The 6 Core Pillars of Project Sleeping LLM
+## 🧭 Epistemological Stance: The Map is Not the Territory
+
+> *"We cannot treat the programming and the hypothesis in the same way. The code is merely a computational telescope; the hypothesis is the biological mystery of the mind."*  
+> — **Project Sleeping LLM Foundational Principle**
+
+We explicitly reject **computational reductionism**. The software in this repository does **not** claim that a Large Language Model is a human brain, nor do we claim machine sentience. 
+
+Instead, the codebase serves strictly as an **in-silico laboratory instrument** (analogous to a particle accelerator in physics): a controlled, reproducible testbed to explore non-linear perturbation dynamics and generate rigorous mathematical hypotheses before translating them to clinical neuroscience.
+
+---
 
 The project is structured across six interdisciplinary pillars, establishing clear boundaries between **LLM Engineering**, **Scientific Theory**, and the dynamics of **Sleeping & Awakening**:
 
