@@ -1,0 +1,39 @@
+{
+  "metadata": {
+    "run_uuid": "607499b0-7cb6-468d-9013-468a31b8b889",
+    "timestamp_iso": "2026-10-21T15:23:29.804-03:00",
+    "device": "cuda",
+    "device_name": "NVIDIA GeForce GTX 1650",
+    "pytorch_version": "2.6.0+cu124",
+    "model_architecture": "GPT-2 (124M parameters, 12 layers, 768 hidden_dim)",
+    "experiment": "Experiment 03: Real Transformer In-Silico Coma & 2D Casali PCI"
+  },
+  "experimental_setup": {
+    "stimulus_prompt": "The human brain in a conscious state is characterized by complex information integration and",
+    "tms_target_layer": 4,
+    "tms_amplitude": 3.0,
+    "coma_lesion_layers": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "coma_damping_factor": 0.05,
+    "steering_injection_layer": 4,
+    "chaotic_entropy_alpha": 0.1
+  },
+  "quantitative_metrics": {
+    "awake_baseline_pci_2d": 0.202107,
+    "comatose_pci_2d": 0.264011,
+    "reawakened_pci_2d": 0.264011,
+    "delta_coma": 0.061905,
+    "delta_recovery": 0.0
+  },
+  "qualitative_text_outputs": {
+    "awake_continuation": "information exchange processes. It then undergoes a cascade of changes in the neural network that culminate in",
+    "comatose_continuation": "----------x---------",
+    "reawakened_continuation": "------if--x--------x-"
+  }
+}
