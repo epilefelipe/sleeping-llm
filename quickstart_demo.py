@@ -48,9 +48,13 @@ def main():
 
     states = ["awake", "coma", "reawakened"]
 
+    # In clinical Casali PCI, a reference pre-stimulus noise floor is used
+    # to evaluate whether activations statistically cross significance.
+    reference_noise = np.random.normal(0, 0.1, size=(32, 64))
+
     for st in states:
         activity = simulate_network_activity(num_layers=32, hidden_dim=64, state=st)
-        pci_score = compute_pci(activity)
+        pci_score = compute_pci(activity, baseline_noise=reference_noise)
         print(f"\n[State: {st.upper():<12}]")
         print(f"  -> Activity Mean:  {np.mean(activity):.4f}")
         print(f"  -> Activity Std:   {np.std(activity):.4f}")

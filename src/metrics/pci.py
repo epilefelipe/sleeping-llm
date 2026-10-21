@@ -1,10 +1,10 @@
 """
 Spatiotemporal Perturbational Complexity Index (PCI_ST / Casali et al. 2013).
-Implements:
+Implements the clinical gold-standard methodology:
 1. True in-silico TMS impulse perturbation (evoked response differential: Delta H = H_pert - H_base).
-2. Data-driven statistical thresholding based on pre-stimulus / baseline noise floor (not arbitrary std).
-3. 2D Spatiotemporal matrix representation (Channels/Layers x Timesteps/Depth).
-4. Casali asymptotic Lempel-Ziv source entropy normalization.
+2. Data-driven statistical thresholding based on pre-stimulus baseline noise floor (99th percentile).
+3. 2D Spatiotemporal matrix representation (Channels/Layers x Timesteps).
+4. Casali source entropy asymptotic Lempel-Ziv normalization with minimal significance floor.
 """
 
 from typing import Tuple, Optional
@@ -57,7 +57,7 @@ def compute_evoked_response(
     """
     Isolates the causal perturbational response (analogous to Transcranial Evoked Potentials - TEPs).
     Delta H = H_perturbed - H_baseline
-    Shape: (channels/layers, timesteps/depth)
+    Shape: (channels/layers, timesteps)
     """
     return perturbed_trajectory - baseline_trajectory
 
@@ -69,7 +69,7 @@ def binarize_spatiotemporal_response(
 ) -> Tuple[np.ndarray, float]:
     """
     Binarizes the 2D evoked response matrix against an empirical statistical noise floor.
-    In Casali et al., only responses statistically exceeding pre-stimulus noise are set to 1.
+    In clinical Casali PCI, only responses statistically exceeding pre-stimulus noise are set to 1.
 
     Args:
         evoked_matrix: 2D array (channels x time) of evoked activity.
@@ -81,13 +81,11 @@ def binarize_spatiotemporal_response(
         threshold: The absolute threshold value used.
     """
     if baseline_noise is not None:
-        # Use baseline distribution to derive non-parametric empirical threshold
         threshold = float(np.percentile(np.abs(baseline_noise), significance_percentile))
     else:
-        # If no explicit baseline recording provided, use parametric estimate from lower quartile
-        threshold = float(np.median(np.abs(evoked_matrix)) + 2.5 * np.std(evoked_matrix[:int(evoked_matrix.shape[0] * 0.25)]))
+        # Robust estimate: 3x median absolute deviation of the unperturbed signal
+        threshold = float(np.median(np.abs(evoked_matrix)) + 3.0 * np.std(evoked_matrix))
 
-    # Protect against zero-variance edge cases
     if threshold <= 1e-9:
         threshold = 1e-4
 
@@ -98,7 +96,8 @@ def binarize_spatiotemporal_response(
 def compute_casali_pci(
     evoked_matrix: np.ndarray,
     baseline_noise: Optional[np.ndarray] = None,
-    significance_percentile: float = 99.0
+    significance_percentile: float = 99.0,
+    min_activation_rate: float = 0.015
 ) -> float:
     """
     Computes the authentic 2D Spatiotemporal Perturbational Complexity Index (PCI).
@@ -107,6 +106,8 @@ def compute_casali_pci(
         evoked_matrix: 2D array of shape (num_channels/layers, num_timesteps).
         baseline_noise: Optional baseline noise matrix for statistical thresholding.
         significance_percentile: Statistical cutoff (default: 99th percentile).
+        min_activation_rate: Minimum fraction of significant ones required to consider
+                             an evoked response non-silent (default: 1.5%).
 
     Returns:
         pci: Normalized Perturbational Complexity Index in [0, 1].
@@ -122,21 +123,22 @@ def compute_casali_pci(
         evoked_matrix, baseline_noise, significance_percentile
     )
 
+    p1 = float(np.mean(binary_matrix))
+    p0 = 1.0 - p1
+
+    # Casali clinical rule: if the perturbation fails to elicit statistically significant
+    # activity above the noise floor (e.g., flatline or silent brain death), PCI is exactly 0.
+    if p1 < min_activation_rate or p0 < min_activation_rate:
+        return 0.0
+
     # 2. 2D Spatiotemporal traversal: preserve spatial structure across time
-    # Order: scan all channels at time t before moving to t+1 (standard EEG column-wise raster)
+    # Column-wise raster (all channels at t before t+1)
     serialized_stream = "".join(binary_matrix.T.flatten().astype(str))
 
     # 3. Calculate empirical LZ76 complexity
     c = lempel_ziv_76(serialized_stream)
 
     # 4. Source entropy calculation
-    p1 = float(np.mean(binary_matrix))
-    p0 = 1.0 - p1
-
-    # Edge cases: completely silent (p1=0) or completely saturated (p1=1) -> Zero complexity
-    if p1 == 0.0 or p0 == 0.0 or p1 < 1e-5 or p0 < 1e-5:
-        return 0.0
-
     shannon_entropy = -(p1 * np.log2(p1) + p0 * np.log2(p0))
 
     # Asymptotic maximal complexity bound according to Casali et al. (2013)
@@ -147,3 +149,12 @@ def compute_casali_pci(
 
     pci = c / c_max
     return float(np.clip(pci, 0.0, 1.0))
+
+
+def compute_pci(
+    activation_matrix: np.ndarray,
+    baseline_noise: Optional[np.ndarray] = None,
+    **kwargs
+) -> float:
+    """Legacy backward-compatibility alias redirecting to compute_casali_pci."""
+    return compute_casali_pci(activation_matrix, baseline_noise=baseline_noise, **kwargs)

@@ -1,0 +1,101 @@
+{
+  "metadata": {
+    "run_uuid": "1b519dfb-97dd-42c8-bd6a-bd380881c9f9",
+    "timestamp_iso": "2026-10-21T15:48:51.682-03:00",
+    "hardware": {
+      "device": "cuda",
+      "device_name": "NVIDIA GeForce GTX 1650",
+      "pytorch_version": "2.6.0+cu124"
+    },
+    "model": {
+      "name": "gpt2",
+      "parameters": "124M",
+      "layers": 12,
+      "hidden_dim": 768
+    },
+    "experiment": "Experiment 03: Multi-Domain In-Silico Coma & 2D Casali PCI Benchmark",
+    "clinical_analogy": "Casali et al. (2013) TMS-EEG & Schiff et al. (2007) Central Thalamic DBS"
+  },
+  "parameters": {
+    "tms_target_layer": 3,
+    "tms_amplitude": 100.0,
+    "reverberation_threshold": 25.0,
+    "coma_lesion_layers": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "coma_damping_factor": 0.05,
+    "steering_target_layer": 4,
+    "steering_multiplier": 1.2,
+    "chaotic_alpha": 0.08
+  },
+  "aggregate_metrics": {
+    "mean_awake_pci": 0.7373,
+    "mean_coma_pci": 0.5802,
+    "mean_sham_pci": 0.6667,
+    "mean_steered_pci": 0.5734
+  },
+  "domain_results": [
+    {
+      "prompt_id": "domain_a_consciousness",
+      "domain": "Cognitive Neuroscience & Consciousness",
+      "prompt": "The human brain in a conscious state is characterized by complex information integration and",
+      "metrics": {
+        "awake_pci": 0.7437,
+        "coma_pci": 0.5304,
+        "sham_pci": 1.0,
+        "steered_pci": 0.5304,
+        "delta_coma": -0.2133,
+        "delta_steer_vs_coma": 0.0
+      },
+      "generations": {
+        "awake": "recognition processes. The ability to recognize, and to communicate with, individuals and groups of people is thought to be essential for the",
+        "coma": "-------------------------",
+        "sham": "-------------------------",
+        "steered": "------------------------b"
+      }
+    },
+    {
+      "prompt_id": "domain_b_neurobiology",
+      "domain": "Mammalian Neurobiology & Thalamus",
+      "prompt": "In the mammalian central nervous system, thalamocortical reverberation is crucial because",
+      "metrics": {
+        "awake_pci": 0.6988,
+        "coma_pci": 0.4551,
+        "sham_pci": 0.0,
+        "steered_pci": 0.4551,
+        "delta_coma": -0.2437,
+        "delta_steer_vs_coma": 0.0
+      },
+      "generations": {
+        "awake": "it facilitates the transmission of information to other tissues. In the rat, thalamocortical reverberation is essential for the",
+        "coma": "-x--\"n----s-\",ability\"'\"\"\"\"\"\"/ (",
+        "sham": "-------------------------",
+        "steered": "xxn-x-,n\"\"ability/ her,\"\",\"\"\",\"\"'\""
+      }
+    },
+    {
+      "prompt_id": "domain_c_logic",
+      "domain": "Formal Logic & Deduction",
+      "prompt": "To solve the complex deduction puzzle, the investigator examined the premise and determined that",
+      "metrics": {
+        "awake_pci": 0.7694,
+        "coma_pci": 0.755,
+        "sham_pci": 1.0,
+        "steered_pci": 0.7347,
+        "delta_coma": -0.0145,
+        "delta_steer_vs_coma": -0.0203
+      },
+      "generations": {
+        "awake": "for the purposes of the present study, the \"suspected tax avoidance\" criteria were sufficient to determine the correct tax calculation",
+        "coma": "----\"-------\"--\"-----\"---",
+        "sham": "-------------------------",
+        "steered": "-------\"\n-\"---\"---'----'-"
+      }
+    }
+  ]
+}
