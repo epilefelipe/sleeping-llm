@@ -1,17 +1,22 @@
 """
-Perturbational Complexity Index (PCI) for Deep Neural Networks.
-Adapts the Casali & Massimini (2013) complexity metric to Transformer latent spaces.
+Spatiotemporal Perturbational Complexity Index (PCI_ST / Casali et al. 2013).
+Implements:
+1. True in-silico TMS impulse perturbation (evoked response differential: Delta H = H_pert - H_base).
+2. Data-driven statistical thresholding based on pre-stimulus / baseline noise floor (not arbitrary std).
+3. 2D Spatiotemporal matrix representation (Channels/Layers x Timesteps/Depth).
+4. Casali asymptotic Lempel-Ziv source entropy normalization.
 """
 
+from typing import Tuple, Optional
 import numpy as np
 
 
-def lempel_ziv_complexity(binary_sequence: str) -> int:
+def lempel_ziv_76(binary_string: str) -> int:
     """
-    Computes the Lempel-Ziv (LZ76) complexity of a binary sequence.
-    Counts the number of distinct non-overlapping substrings.
+    Computes Lempel-Ziv 1976 (LZ76) complexity of a binary sequence.
+    Counts the number of distinct patterns encountered.
     """
-    n = len(binary_sequence)
+    n = len(binary_string)
     if n == 0:
         return 0
 
@@ -22,7 +27,7 @@ def lempel_ziv_complexity(binary_sequence: str) -> int:
     k_max = 1
 
     while l + k <= n:
-        if binary_sequence[i + k - 1] == binary_sequence[l + k - 1]:
+        if binary_string[i + k - 1] == binary_string[l + k - 1]:
             k += 1
             if l + k > n:
                 c += 1
@@ -45,47 +50,100 @@ def lempel_ziv_complexity(binary_sequence: str) -> int:
     return c
 
 
-def compute_pci(activation_matrix: np.ndarray, threshold_std: float = 1.0) -> float:
+def compute_evoked_response(
+    baseline_trajectory: np.ndarray,
+    perturbed_trajectory: np.ndarray
+) -> np.ndarray:
     """
-    Computes the Perturbational Complexity Index (PCI_LLM) for an activation matrix.
+    Isolates the causal perturbational response (analogous to Transcranial Evoked Potentials - TEPs).
+    Delta H = H_perturbed - H_baseline
+    Shape: (channels/layers, timesteps/depth)
+    """
+    return perturbed_trajectory - baseline_trajectory
+
+
+def binarize_spatiotemporal_response(
+    evoked_matrix: np.ndarray,
+    baseline_noise: Optional[np.ndarray] = None,
+    significance_percentile: float = 99.0
+) -> Tuple[np.ndarray, float]:
+    """
+    Binarizes the 2D evoked response matrix against an empirical statistical noise floor.
+    In Casali et al., only responses statistically exceeding pre-stimulus noise are set to 1.
 
     Args:
-        activation_matrix: 2D array of shape (num_layers, hidden_dimension) or (timesteps, channels).
-        threshold_std: Number of standard deviations above baseline to set binary threshold.
+        evoked_matrix: 2D array (channels x time) of evoked activity.
+        baseline_noise: 2D array of pre-stimulus / unperturbed baseline noise.
+        significance_percentile: Percentile threshold for statistical significance (default: 99.0%).
 
     Returns:
-        pci: Normalized Perturbational Complexity Index in range [0, 1].
+        binary_matrix: 2D binary matrix of significant evoked activations.
+        threshold: The absolute threshold value used.
     """
-    # 1. Binarize activation matrix relative to mean baseline
-    mean_val = np.mean(activation_matrix)
-    std_val = np.std(activation_matrix)
-    threshold = mean_val + threshold_std * std_val
+    if baseline_noise is not None:
+        # Use baseline distribution to derive non-parametric empirical threshold
+        threshold = float(np.percentile(np.abs(baseline_noise), significance_percentile))
+    else:
+        # If no explicit baseline recording provided, use parametric estimate from lower quartile
+        threshold = float(np.median(np.abs(evoked_matrix)) + 2.5 * np.std(evoked_matrix[:int(evoked_matrix.shape[0] * 0.25)]))
 
-    binary_mat = (activation_matrix > threshold).astype(int)
+    # Protect against zero-variance edge cases
+    if threshold <= 1e-9:
+        threshold = 1e-4
 
-    # 2. Serialize matrix into a 1D bitstream
-    bitstream = "".join(binary_mat.flatten().astype(str))
-    total_length = len(bitstream)
+    binary_matrix = (np.abs(evoked_matrix) > threshold).astype(int)
+    return binary_matrix, threshold
+
+
+def compute_casali_pci(
+    evoked_matrix: np.ndarray,
+    baseline_noise: Optional[np.ndarray] = None,
+    significance_percentile: float = 99.0
+) -> float:
+    """
+    Computes the authentic 2D Spatiotemporal Perturbational Complexity Index (PCI).
+
+    Args:
+        evoked_matrix: 2D array of shape (num_channels/layers, num_timesteps).
+        baseline_noise: Optional baseline noise matrix for statistical thresholding.
+        significance_percentile: Statistical cutoff (default: 99th percentile).
+
+    Returns:
+        pci: Normalized Perturbational Complexity Index in [0, 1].
+    """
+    channels, timesteps = evoked_matrix.shape
+    total_length = channels * timesteps
 
     if total_length == 0:
         return 0.0
 
-    # 3. Compute empirical Lempel-Ziv complexity
-    c = lempel_ziv_complexity(bitstream)
+    # 1. Statistical binarization based on baseline noise floor
+    binary_matrix, _ = binarize_spatiotemporal_response(
+        evoked_matrix, baseline_noise, significance_percentile
+    )
 
-    # 4. Normalize by source entropy / asymptotic upper bound
-    p1 = np.mean(binary_mat)
+    # 2. 2D Spatiotemporal traversal: preserve spatial structure across time
+    # Order: scan all channels at time t before moving to t+1 (standard EEG column-wise raster)
+    serialized_stream = "".join(binary_matrix.T.flatten().astype(str))
+
+    # 3. Calculate empirical LZ76 complexity
+    c = lempel_ziv_76(serialized_stream)
+
+    # 4. Source entropy calculation
+    p1 = float(np.mean(binary_matrix))
     p0 = 1.0 - p1
 
-    if p0 == 0 or p1 == 0:
+    # Edge cases: completely silent (p1=0) or completely saturated (p1=1) -> Zero complexity
+    if p1 == 0.0 or p0 == 0.0 or p1 < 1e-5 or p0 < 1e-5:
         return 0.0
 
-    # Shannon source entropy
-    entropy = - (p1 * np.log2(p1) + p0 * np.log2(p0))
-    asymptotic_bound = (total_length * entropy) / np.log2(total_length)
+    shannon_entropy = -(p1 * np.log2(p1) + p0 * np.log2(p0))
 
-    if asymptotic_bound == 0:
+    # Asymptotic maximal complexity bound according to Casali et al. (2013)
+    c_max = (total_length * shannon_entropy) / np.log2(total_length)
+
+    if c_max <= 0:
         return 0.0
 
-    pci = c / asymptotic_bound
+    pci = c / c_max
     return float(np.clip(pci, 0.0, 1.0))

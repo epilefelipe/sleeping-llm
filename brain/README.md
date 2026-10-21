@@ -11,6 +11,7 @@ brain/
 ├── foundational_whitepaper.md           # The complete registered working paper (DOI: 10.5281/zenodo.23536600)
 ├── theories/                            # Theoretical frameworks & mathematical models
 │   ├── signals_not_words.md             # ⭐ Core Paradigm: Coma as Field Dynamics Without Words (Signals vs. Words)
+│   ├── casali_spatiotemporal_pci.md     # 🔬 2D Spatiotemporal Casali PCI: Evoked Responses & Statistical Validation
 │   ├── chaotic_entropy_and_lavarand.md  # 🌋 The LavaRand Principle: Breaking Comatose Attractors via True Physical Chaos
 │   ├── experimental_stress_parameters.md# ⚖️ Boundary Conditions: A-thalamic, low-resource, and valid spectrum limits
 │   ├── iit_and_pci.md                   # Integrated Information Theory & Perturbational Complexity Index
