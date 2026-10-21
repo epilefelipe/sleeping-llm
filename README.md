@@ -111,9 +111,12 @@ If you use this framework or theoretical architecture in your research, please c
 
 ---
 
-## 🤝 Collaboration & Contact
+## 🤝 Contributing & Collaboration
 
-Initiator & Project Lead: **Felipe Antonio Abarzua Herrera**  
-Zenodo Record: [10.5281/zenodo.23536600](https://doi.org/10.5281/zenodo.23536600)  
-GitHub: [https://github.com/epilefelipe/sleeping-llm](https://github.com/epilefelipe/sleeping-llm)  
-Open for collaborations with researchers from computational neuroscience, machine learning, and neurology.
+We are in **Phase 0** and actively seeking collaborators across computational neuroscience, machine learning, and neurology. 
+
+- **How to contribute:** Read our [CONTRIBUTING.md](CONTRIBUTING.md) guide for setup, priorities, and co-authorship policy.
+- **Open tasks & roadmap:** Check [docs/ROADMAP_AND_ISSUES.md](docs/ROADMAP_AND_ISSUES.md) for prioritized issues.
+- **Project Lead:** Felipe Antonio Abarzua Herrera
+- **Zenodo Record:** [10.5281/zenodo.23536600](https://doi.org/10.5281/zenodo.23536600)
+- **GitHub:** [https://github.com/epilefelipe/sleeping-llm](https://github.com/epilefelipe/sleeping-llm)
