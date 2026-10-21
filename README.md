@@ -59,7 +59,10 @@ The project is structured across six interdisciplinary pillars, establishing cle
 ```
 sleeping-llm/
 ├── docs/
-│   └── whitepaper.pdf              # Official working paper (Zenodo DOI: 10.5281/zenodo.23536600)
+│   ├── whitepaper.pdf              # Official working paper (Zenodo DOI: 10.5281/zenodo.23536600)
+│   ├── EXPERIMENT_03_REPORT.md     # Official empirical benchmark technical report
+│   ├── EXPERIMENT_03_REPORT.pdf    # Academic technical report (5 pages)
+│   └── ROADMAP_AND_ISSUES.md       # Prioritized backlog
 ├── src/
 │   ├── coma/                       # Pillar 1: Protocols for inducing artificial comatose states
 │   │   ├── __init__.py
@@ -100,6 +103,25 @@ pip install -r requirements.txt
 # Run the initial simulation
 python quickstart_demo.py
 ```
+
+---
+
+## 📊 Empirical Benchmark Results (Experiment 03: Real Transformer In-Silico Coma)
+
+We evaluate in-silico coma induction, 2D Spatiotemporal Casali PCI, and re-ignition using a real pretrained autoregressive transformer (`GPT-2`, 124M parameters, 12 layers) across 3 diverse cognitive domains (Consciousness, Neurobiology, Logic) and 4 experimental conditions.
+
+- **Full Scientific Report:** [docs/EXPERIMENT_03_REPORT.md](docs/EXPERIMENT_03_REPORT.md) | [PDF Version (5 pages)](docs/EXPERIMENT_03_REPORT.pdf)
+- **Official Run UUID:** `1b519dfb-97dd-42c8-bd6a-bd380881c9f9` (`2026-10-21T15:48:51.682-03:00`)
+- **Raw Data Artifacts:** [JSON Payload](experiments/results/run_1b519dfb-97dd-42c8-bd6a-bd380881c9f9.json) | [Execution Log](experiments/results/run_1b519dfb-97dd-42c8-bd6a-bd380881c9f9.md)
+
+| Experimental Condition | Mean PCI_2D | Delta vs. Awake | Behavioral Profile |
+| :--- | :---: | :---: | :--- |
+| **Stage 1: Awake Baseline** | **0.7373** | *Reference* | Intact coherent lexical & semantic integration |
+| **Stage 2: Induced Coma (Layers 6–11 damped to 5%)** | **0.5802** | **-0.1571** | Catatonic mutism (`-------------------------`) |
+| **Stage 3: Sham Control (Gaussian Noise)** | **0.6667** | **-0.0706** | Perseverative, seizure-like uninformative loops |
+| **Stage 4: Targeted Steering (In-Silico DBS)** | **0.5734** | **-0.1639** | Dash attractor breached; emergence of proto-tokens |
+
+> **Key Takeaway:** In-silico coma causes a marked, statistically significant collapse in 2D Spatiotemporal PCI ($0.7373 \to 0.5802$). Targeted representation steering breaks the catatonic attractor, but single-layer static stimulation cannot unilaterally rescue a diffuse 6-layer lesion—reproducing the clinical finding (Schiff et al., 2007) that diffuse axonal injuries require distributed multi-site neuromodulation.
 
 ---
 
