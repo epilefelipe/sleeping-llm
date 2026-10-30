@@ -60,9 +60,10 @@ The project is structured across six interdisciplinary pillars, establishing cle
 sleeping-llm/
 ├── docs/
 │   ├── whitepaper.pdf              # Official working paper (Zenodo DOI: 10.5281/zenodo.23536600)
-│   ├── EXPERIMENT_03_REPORT.md     # Official empirical benchmark technical report
-│   ├── EXPERIMENT_03_REPORT.pdf    # Academic technical report (5 pages)
-│   └── ROADMAP_AND_ISSUES.md       # Prioritized backlog
+│   ├── EXPERIMENT_04_REPORT.md     # ComaBench v0.3 technical research report
+│   ├── EXPERIMENT_04_REPORT.pdf    # Academic research report (ComaBench v0.3)
+│   ├── EXPERIMENT_03_REPORT.md     # ComaBench v3 preliminary report
+│   └── ROADMAP_AND_ISSUES.md       # Completed milestones & prioritized backlog
 ├── src/
 │   ├── coma/                       # Pillar 1: Protocols for inducing artificial comatose states
 │   │   ├── __init__.py
@@ -79,8 +80,16 @@ sleeping-llm/
 │       ├── __init__.py
 │       └── beauty_experiment.py    # Self-locating prior evaluation in stateless re-awakening
 ├── experiments/                    # Benchmark scripts and ablation runs
+│   ├── 01_coma_and_steering_benchmark.py
+│   ├── 02_pci_validation_and_correlation.py
+│   ├── 03_real_llm_coma_experiment.py
+│   ├── 04_rigorous_comabench_suite.py   # ComaBench v0.3 multi-model suite
+│   ├── 05_causal_rescue_and_attractors.py # Causal rescue & mechanistic diagnostics
+│   └── results/                    # Machine-readable JSON execution logs
+├── tests/                          # 100% passing unit test suite (unittest)
 ├── quickstart_demo.py              # Minimal simulation script demonstrating the 3 states
 ├── requirements.txt
+├── LICENSE                         # MIT License
 └── README.md
 ```
 
@@ -146,8 +155,9 @@ Evaluations span a **10-level fine-grained dose-response sweep** ($\alpha \in [1
 
 - **State vs. Update Damping (Intervention A vs. B):** Attenuating only sublayer update branches $F_\ell$ (attention/MLP contributions) allows lexical English syntax to survive ($\text{NLL} = 6.14$ at $\alpha=0.20$), whereas attenuating the full accumulated residual state $h$ destroys the carrier highway and triggers the hyphen attractor ($\text{NLL} = 20.85$).
 - **The Hyphen Attractor is NOT a Greedy Artifact:** Step-by-step logit tracking demonstrates that the hyphen attractor persists identically under stochastic temperature sampling ($T=0.7$, 100% hyphens) due to severe unembedding logit margin bias.
-- **Dynamic Causal Patching:** Restoring dynamic awake activations across severed layers 6..11 drops NLL from $22.45$ to $7.75$ and breaks the hyphen freeze, validating that multi-layer lesions require dynamic causal replenishment rather than static unipolar steering vectors.
-- **Reproducible Script & Artifact:** [`experiments/05_causal_rescue_and_attractors.py`](experiments/05_causal_rescue_and_attractors.py) | [Raw JSON Data](experiments/results/run_exp05_causal_rescue_5178fec1-cffc-4cea-a087-8c968ab5c4e5.json)
+- **Dynamic Causal Patching:** Restoring dynamic awake activations across severed layers 6..11 drops NLL from $22.45$ to $7.75$ and breaks the hyphen freeze, suggesting that multi-layer lesions require dynamic causal replenishment rather than static unipolar steering vectors. While NLL partially recovers, full semantic coherence remains an open research question.
+- **Reproducible Script & Artifact:** [`experiments/05_causal_rescue_and_attractors.py`](https://github.com/epilefelipe/sleeping-llm/blob/v0.3-comabench/experiments/05_causal_rescue_and_attractors.py) | [Raw JSON Data](https://github.com/epilefelipe/sleeping-llm/blob/v0.3-comabench/experiments/results/run_exp05_causal_rescue_5178fec1-cffc-4cea-a087-8c968ab5c4e5.json)
+- **Official Benchmark Release:** [Release `v0.3-comabench`](https://github.com/epilefelipe/sleeping-llm/releases/tag/v0.3-comabench)
 
 ---
 
