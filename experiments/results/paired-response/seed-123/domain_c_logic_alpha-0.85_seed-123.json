@@ -1,0 +1,38 @@
+{
+  "prompt": "domain_c_logic",
+  "alpha": 0.85,
+  "seed": 123,
+  "target_layer": 3,
+  "target_token": 5,
+  "amplitude": 64.16212463378906,
+  "noise_threshold": 301.98809814453125,
+  "metrics": {
+    "matched_zero": {
+      "norm": 0.0,
+      "max_norm": 0.0,
+      "complexity": 0.0
+    },
+    "unmatched_zero": {
+      "norm": 18570.361328125,
+      "max_norm": 6052.734375,
+      "complexity": 0.5148480790591377
+    },
+    "matched_pulse": {
+      "norm": 587.3657836914062,
+      "max_norm": 136.87173461914062,
+      "complexity": 0.0
+    },
+    "unmatched_pulse": {
+      "norm": 18581.517578125,
+      "max_norm": 6052.734375,
+      "complexity": 0.448560395469198
+    }
+  },
+  "language": {
+    "nll": 3.237078905105591,
+    "accuracy": 0.47826087474823,
+    "tokens": 23
+  },
+  "zero_response_passed": true,
+  "restoration_passed": true
+}

@@ -1,0 +1,38 @@
+{
+  "prompt": "domain_a_consciousness",
+  "alpha": 0.0,
+  "seed": 999,
+  "target_layer": 3,
+  "target_token": 4,
+  "amplitude": 59.208072662353516,
+  "noise_threshold": 502.4267272949219,
+  "metrics": {
+    "matched_zero": {
+      "norm": 0.0,
+      "max_norm": 0.0,
+      "complexity": 0.0
+    },
+    "unmatched_zero": {
+      "norm": 20136.4140625,
+      "max_norm": 4982.32470703125,
+      "complexity": 0.4377337663875967
+    },
+    "matched_pulse": {
+      "norm": 250.75315856933594,
+      "max_norm": 91.9946060180664,
+      "complexity": 0.0
+    },
+    "unmatched_pulse": {
+      "norm": 20137.97265625,
+      "max_norm": 4982.32470703125,
+      "complexity": 0.4377337663875967
+    }
+  },
+  "language": {
+    "nll": 11.931214332580566,
+    "accuracy": 0.0,
+    "tokens": 19
+  },
+  "zero_response_passed": true,
+  "restoration_passed": true
+}

@@ -1,0 +1,57 @@
+{
+  "model": "Qwen/Qwen3-4B",
+  "configuration": {
+    "model": "Qwen/Qwen3-4B",
+    "prompts": [
+      {
+        "id": "domain_a_consciousness",
+        "domain": "Cognitive Neuroscience & Consciousness",
+        "prompt": "The human brain in a conscious state is characterized by complex information integration and",
+        "continuation": " differentiated neural dynamics that enable subjective awareness, unified sensory perception, and cognitive flexibility across cortical networks."
+      },
+      {
+        "id": "domain_b_neurobiology",
+        "domain": "Mammalian Neurobiology & Thalamus",
+        "prompt": "In the mammalian central nervous system, thalamocortical reverberation is crucial because",
+        "continuation": " it synchronizes distant cortical regions, regulates sensory gating, and maintains the balanced excitation needed for waking consciousness."
+      },
+      {
+        "id": "domain_c_logic",
+        "domain": "Formal Logic & Deduction",
+        "prompt": "To solve the complex deduction puzzle, the investigator examined the premise and determined that",
+        "continuation": " since the initial conditions were mutually exclusive, the only logically consistent conclusion was that the second suspect had an alibi."
+      }
+    ],
+    "alpha": [
+      1.0,
+      0.85,
+      0.7,
+      0.55,
+      0.4,
+      0.3,
+      0.2,
+      0.1,
+      0.05,
+      0.0
+    ],
+    "seeds": [
+      42,
+      123,
+      999
+    ],
+    "target_layer": 3,
+    "amplitude_multiplier": 2.5,
+    "jitter_fraction": 0.01,
+    "noise_seed": 999
+  },
+  "python": "3.12.0",
+  "numpy": "2.2.6",
+  "torch": "2.6.0+cu124",
+  "transformers": "5.15.1",
+  "device": "NVIDIA H100 80GB HBM3",
+  "dtype": "bfloat16",
+  "seed": 123,
+  "started_at": "2026-10-30T21:01:15.839908+00:00",
+  "seconds": 6.674534979974851,
+  "finished_at": "2026-10-30T21:01:22.513458+00:00"
+}
