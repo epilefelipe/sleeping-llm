@@ -1,0 +1,38 @@
+{
+  "prompt": "domain_b_neurobiology",
+  "alpha": 0.05,
+  "seed": 123,
+  "target_layer": 3,
+  "target_token": 6,
+  "amplitude": 69.0744857788086,
+  "noise_threshold": 264.7367858886719,
+  "metrics": {
+    "matched_zero": {
+      "norm": 0.0,
+      "max_norm": 0.0,
+      "complexity": 0.0
+    },
+    "unmatched_zero": {
+      "norm": 27107.841796875,
+      "max_norm": 6740.41162109375,
+      "complexity": 0.16947670098002335
+    },
+    "matched_pulse": {
+      "norm": 320.05120849609375,
+      "max_norm": 77.575439453125,
+      "complexity": 0.0
+    },
+    "unmatched_pulse": {
+      "norm": 27109.888671875,
+      "max_norm": 6740.41162109375,
+      "complexity": 0.16947670098002335
+    }
+  },
+  "language": {
+    "nll": 12.19559383392334,
+    "accuracy": 0.0,
+    "tokens": 22
+  },
+  "zero_response_passed": true,
+  "restoration_passed": true
+}

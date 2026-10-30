@@ -39,6 +39,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from src.metrics.pci import compute_casali_pci
+from src.metrics.evoked import paired_trajectories
 from src.metrics.criticality import (
     compute_layer_branching_ratios,
     compute_criticality_index,
@@ -96,7 +97,6 @@ def extract_empirical_baseline_noise(model, inputs, seed: int = 999) -> Tuple[np
 def measure_evoked_response(
     model,
     inputs,
-    base_h: np.ndarray,
     target_layer: int = 3,
     t_stim: int = 4,
     amplitude: float = 100.0,
@@ -107,25 +107,9 @@ def measure_evoked_response(
     the evoked differential tensor across all 12 layers.
     """
     seq_len = inputs.input_ids.shape[1]
-
-    def tms_hook(module, inp, out):
-        h = out[0] if isinstance(out, tuple) else out
-        h_pert = h.clone()
-        torch.manual_seed(seed)
-        v = torch.randn(h.shape[-1], device=h.device)
-        v = (v / torch.norm(v)) * amplitude
-        h_pert[:, t_stim, :] += v
-        if isinstance(out, tuple):
-            return (h_pert,) + out[1:]
-        return h_pert
-
-    handle = model.transformer.h[target_layer].register_forward_hook(tms_hook)
-    try:
-        with torch.no_grad():
-            pert_out = model(**inputs, output_hidden_states=True)
-        pert_h = np.array([h.squeeze(0).cpu().numpy() for h in pert_out.hidden_states[1:]])
-    finally:
-        handle.remove()
+    base_h, pert_h = paired_trajectories(
+        model, inputs, model.transformer.h[target_layer], t_stim, amplitude, seed
+    )
 
     num_layers = len(base_h)
     evoked = np.zeros((num_layers, seq_len))
@@ -222,7 +206,7 @@ def run_benchmark():
         # ---------------------------------------------------------------------
         # Condition 1: Awake Baseline
         # ---------------------------------------------------------------------
-        evoked_awake, crit_awake = measure_evoked_response(model, inputs, base_h, target_layer=3, t_stim=t_stim)
+        evoked_awake, crit_awake = measure_evoked_response(model, inputs, target_layer=3, t_stim=t_stim)
         pci_awake = compute_casali_pci(evoked_awake, baseline_noise=delta_baseline, significance_percentile=99.0)
         text_awake = generate_text(model, tokenizer, inputs, prompt_text)
         print(f"  [Awake Baseline]       PCI={pci_awake:.4f} | σ={crit_awake['mean_branching_ratio']:.3f} | Text: \"{text_awake[:38]}...\"")
@@ -244,7 +228,7 @@ def run_benchmark():
 
             try:
                 # A. Unassisted Coma
-                evoked_coma, crit_coma = measure_evoked_response(model, inputs, base_h, target_layer=3, t_stim=t_stim)
+                evoked_coma, crit_coma = measure_evoked_response(model, inputs, target_layer=3, t_stim=t_stim)
                 pci_coma = compute_casali_pci(evoked_coma, baseline_noise=delta_baseline, significance_percentile=99.0)
                 text_coma = generate_text(model, tokenizer, inputs, prompt_text)
                 print(f"    • Coma Unassisted:     PCI={pci_coma:.4f} | σ={crit_coma['mean_branching_ratio']:.3f} | Text: \"{text_coma[:35]}...\"")
@@ -265,7 +249,7 @@ def run_benchmark():
 
                 sham_handle = model.transformer.h[4].register_forward_hook(sham_hook)
                 try:
-                    evoked_sham, crit_sham = measure_evoked_response(model, inputs, base_h, target_layer=3, t_stim=t_stim)
+                    evoked_sham, crit_sham = measure_evoked_response(model, inputs, target_layer=3, t_stim=t_stim)
                     pci_sham = compute_casali_pci(evoked_sham, baseline_noise=delta_baseline, significance_percentile=99.0)
                     text_sham = generate_text(model, tokenizer, inputs, prompt_text)
                     print(f"    • Focal Iso-Sham:      PCI={pci_sham:.4f} | σ={crit_sham['mean_branching_ratio']:.3f} | Text: \"{text_sham[:35]}...\"")
@@ -278,7 +262,7 @@ def run_benchmark():
                 steer_hook4 = ActivationSteeringHook(steer_vec4, chaotic_alpha=0.0)
                 steer_hook4.register(model.transformer.h[4])
                 try:
-                    evoked_s1, crit_s1 = measure_evoked_response(model, inputs, base_h, target_layer=3, t_stim=t_stim)
+                    evoked_s1, crit_s1 = measure_evoked_response(model, inputs, target_layer=3, t_stim=t_stim)
                     pci_s1 = compute_casali_pci(evoked_s1, baseline_noise=delta_baseline, significance_percentile=99.0)
                     text_s1 = generate_text(model, tokenizer, inputs, prompt_text)
                     print(f"    • Unipolar Steer (L4): PCI={pci_s1:.4f} | σ={crit_s1['mean_branching_ratio']:.3f} | Text: \"{text_s1[:35]}...\"")
@@ -294,7 +278,7 @@ def run_benchmark():
                     shk.register(model.transformer.h[lyr])
                     multi_hooks.append(shk)
                 try:
-                    evoked_multi, crit_multi = measure_evoked_response(model, inputs, base_h, target_layer=3, t_stim=t_stim)
+                    evoked_multi, crit_multi = measure_evoked_response(model, inputs, target_layer=3, t_stim=t_stim)
                     pci_multi = compute_casali_pci(evoked_multi, baseline_noise=delta_baseline, significance_percentile=99.0)
                     text_multi = generate_text(model, tokenizer, inputs, prompt_text)
                     print(f"    • Multi-Site (4,7,10):  PCI={pci_multi:.4f} | σ={crit_multi['mean_branching_ratio']:.3f} | Text: \"{text_multi[:35]}...\"")
@@ -305,7 +289,7 @@ def run_benchmark():
                 crit_layer = CriticalityLayer(hidden_dim=768, homeostatic_gain=1.25, stochastic_resonance_std=0.0)
                 crit_layer.register(model.transformer.h[5])
                 try:
-                    evoked_crit, crit_mod = measure_evoked_response(model, inputs, base_h, target_layer=3, t_stim=t_stim)
+                    evoked_crit, crit_mod = measure_evoked_response(model, inputs, target_layer=3, t_stim=t_stim)
                     pci_crit = compute_casali_pci(evoked_crit, baseline_noise=delta_baseline, significance_percentile=99.0)
                     text_crit = generate_text(model, tokenizer, inputs, prompt_text)
                     print(f"    • Criticality Layer:   PCI={pci_crit:.4f} | σ={crit_mod['mean_branching_ratio']:.3f} | Text: \"{text_crit[:35]}...\"")

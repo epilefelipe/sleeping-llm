@@ -36,6 +36,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from src.metrics.pci import compute_casali_pci
+from src.metrics.evoked import paired_trajectories
 from src.metrics.criticality import (
     compute_layer_branching_ratios,
     compute_criticality_index,
@@ -111,7 +112,6 @@ def extract_empirical_baseline_noise(model, inputs, seed: int = 999) -> Tuple[np
 def measure_evoked_response(
     model,
     inputs,
-    base_h: np.ndarray,
     target_layer: int = 3,
     t_stim: int = 4,
     amplitude: float = 100.0,
@@ -122,28 +122,9 @@ def measure_evoked_response(
     the evoked differential tensor across all layers.
     """
     seq_len = inputs.input_ids.shape[1]
-    layers = get_model_layers(model)
-
-    def tms_hook(module, inp, out):
-        h = out[0] if isinstance(out, tuple) else out
-        h_pert = h.clone().float()
-        torch.manual_seed(seed)
-        v = torch.randn(h.shape[-1], device=h.device)
-        v = (v / torch.norm(v)) * amplitude
-        stim_idx = min(t_stim, h.shape[1] - 1)
-        h_pert[:, stim_idx, :] += v
-        h_pert = h_pert.to(h.dtype)
-        if isinstance(out, tuple):
-            return (h_pert,) + out[1:]
-        return h_pert
-
-    handle = layers[target_layer].register_forward_hook(tms_hook)
-    try:
-        with torch.no_grad():
-            pert_out = model(**inputs, output_hidden_states=True)
-        pert_h = np.array([h.squeeze(0).float().cpu().numpy() for h in pert_out.hidden_states[1:]], dtype=np.float32)
-    finally:
-        handle.remove()
+    base_h, pert_h = paired_trajectories(
+        model, inputs, get_model_layers(model)[target_layer], t_stim, amplitude, seed
+    )
 
     num_layers = len(base_h)
     evoked = np.zeros((num_layers, seq_len), dtype=np.float32)
@@ -283,7 +264,7 @@ def run_benchmark():
                 try:
                     for seed in SEEDS:
                         evoked, crit = measure_evoked_response(
-                            model, inputs, base_h, target_layer=3, t_stim=t_stim, amplitude=calibrated_amp, seed=seed
+                            model, inputs, target_layer=3, t_stim=t_stim, amplitude=calibrated_amp, seed=seed
                         )
                         pci_val = compute_casali_pci(evoked, baseline_noise=delta_baseline, significance_percentile=99.0)
                         lang = compute_language_metrics(model, full_inputs, prompt_len)
@@ -348,7 +329,7 @@ def run_benchmark():
         calibrated_amp = 2.5 * l3_norm
 
         # A. Awake Baseline
-        ev_awake, crit_awake = measure_evoked_response(model, inputs, base_h, target_layer=3, t_stim=t_stim, amplitude=calibrated_amp)
+        ev_awake, crit_awake = measure_evoked_response(model, inputs, target_layer=3, t_stim=t_stim, amplitude=calibrated_amp)
         pci_ref_awake = compute_casali_pci(ev_awake, baseline_noise=delta_baseline, significance_percentile=99.0)
         lang_ref_awake = compute_language_metrics(model, full_inputs, prompt_len)
         text_ref_awake = generate_sample(model, tokenizer, inputs, prompt_test["prompt"], seed=42)
@@ -358,7 +339,7 @@ def run_benchmark():
         for i, h in enumerate(early_hooks):
             h.register(layers[i])
         try:
-            ev_early, crit_early = measure_evoked_response(model, inputs, base_h, target_layer=3, t_stim=t_stim, amplitude=calibrated_amp)
+            ev_early, crit_early = measure_evoked_response(model, inputs, target_layer=3, t_stim=t_stim, amplitude=calibrated_amp)
             pci_early = compute_casali_pci(ev_early, baseline_noise=delta_baseline, significance_percentile=99.0)
             lang_early = compute_language_metrics(model, full_inputs, prompt_len)
             text_early = generate_sample(model, tokenizer, inputs, prompt_test["prompt"], seed=42)
@@ -371,7 +352,7 @@ def run_benchmark():
         for i, h in enumerate(late_hooks):
             h.register(layers[6 + i])
         try:
-            ev_late, crit_late = measure_evoked_response(model, inputs, base_h, target_layer=3, t_stim=t_stim, amplitude=calibrated_amp)
+            ev_late, crit_late = measure_evoked_response(model, inputs, target_layer=3, t_stim=t_stim, amplitude=calibrated_amp)
             pci_late = compute_casali_pci(ev_late, baseline_noise=delta_baseline, significance_percentile=99.0)
             lang_late = compute_language_metrics(model, full_inputs, prompt_len)
             text_late = generate_sample(model, tokenizer, inputs, prompt_test["prompt"], seed=42)
@@ -398,7 +379,7 @@ def run_benchmark():
 
         try:
             # Baseline Coma
-            ev_coma, crit_coma = measure_evoked_response(model, inputs, base_h, target_layer=3, t_stim=t_stim, amplitude=calibrated_amp)
+            ev_coma, crit_coma = measure_evoked_response(model, inputs, target_layer=3, t_stim=t_stim, amplitude=calibrated_amp)
             pci_coma = compute_casali_pci(ev_coma, baseline_noise=delta_baseline, significance_percentile=99.0)
             text_coma = generate_sample(model, tokenizer, inputs, prompt_test["prompt"], seed=42)
 
@@ -411,7 +392,7 @@ def run_benchmark():
             shk_dir = ActivationSteeringHook(svec_dir, chaotic_alpha=0.0)
             shk_dir.register(layers[4])
             try:
-                ev_dir, crit_dir = measure_evoked_response(model, inputs, base_h, target_layer=3, t_stim=t_stim, amplitude=calibrated_amp)
+                ev_dir, crit_dir = measure_evoked_response(model, inputs, target_layer=3, t_stim=t_stim, amplitude=calibrated_amp)
                 pci_dir = compute_casali_pci(ev_dir, baseline_noise=delta_baseline, significance_percentile=99.0)
                 text_dir = generate_sample(model, tokenizer, inputs, prompt_test["prompt"], seed=42)
             finally:
@@ -425,7 +406,7 @@ def run_benchmark():
             shk_sham = ActivationSteeringHook(svec_sham, chaotic_alpha=0.0)
             shk_sham.register(layers[4])
             try:
-                ev_sham, crit_sham = measure_evoked_response(model, inputs, base_h, target_layer=3, t_stim=t_stim, amplitude=calibrated_amp)
+                ev_sham, crit_sham = measure_evoked_response(model, inputs, target_layer=3, t_stim=t_stim, amplitude=calibrated_amp)
                 pci_sham = compute_casali_pci(ev_sham, baseline_noise=delta_baseline, significance_percentile=99.0)
                 text_sham = generate_sample(model, tokenizer, inputs, prompt_test["prompt"], seed=42)
             finally:
@@ -435,7 +416,7 @@ def run_benchmark():
             crit_layer = CriticalityLayer(hidden_dim=model_cfg["hidden_dim"], homeostatic_gain=1.25, stochastic_resonance_std=0.01)
             crit_layer.register(layers[5])
             try:
-                ev_crit, crit_mod = measure_evoked_response(model, inputs, base_h, target_layer=3, t_stim=t_stim, amplitude=calibrated_amp)
+                ev_crit, crit_mod = measure_evoked_response(model, inputs, target_layer=3, t_stim=t_stim, amplitude=calibrated_amp)
                 pci_crit = compute_casali_pci(ev_crit, baseline_noise=delta_baseline, significance_percentile=99.0)
                 text_crit = generate_sample(model, tokenizer, inputs, prompt_test["prompt"], seed=42)
             finally:
