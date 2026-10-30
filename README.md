@@ -142,6 +142,13 @@ Evaluations span a **10-level fine-grained dose-response sweep** ($\alpha \in [1
 - **Honest Demarcation of DBS Re-ignition:** Single-site activation steering at Layer 4 (difference-in-means) perturbs latent activations but **fails** to restore grammatical coherence or semantic reasoning after a 6-layer lesion. Project Sleeping LLM strictly reports this recovery limitation rather than claiming to "cure" artificial coma.
 - **Criticality Layer Dynamics:** Homeostatic gain in Layer 5 restores branching ratio toward the edge of chaos ($\bar{\sigma} \approx 1$), serving as a physical/dynamical stabilizer that elevates spatiotemporal reverberation.
 
+### 3. Mechanistic Diagnostics & Causal Rescue (Experiment 05)
+
+- **State vs. Update Damping (Intervention A vs. B):** Attenuating only sublayer update branches $F_\ell$ (attention/MLP contributions) allows lexical English syntax to survive ($\text{NLL} = 6.14$ at $\alpha=0.20$), whereas attenuating the full accumulated residual state $h$ destroys the carrier highway and triggers the hyphen attractor ($\text{NLL} = 20.85$).
+- **The Hyphen Attractor is NOT a Greedy Artifact:** Step-by-step logit tracking demonstrates that the hyphen attractor persists identically under stochastic temperature sampling ($T=0.7$, 100% hyphens) due to severe unembedding logit margin bias.
+- **Dynamic Causal Patching:** Restoring dynamic awake activations across severed layers 6..11 drops NLL from $22.45$ to $7.75$ and breaks the hyphen freeze, validating that multi-layer lesions require dynamic causal replenishment rather than static unipolar steering vectors.
+- **Reproducible Script & Artifact:** [`experiments/05_causal_rescue_and_attractors.py`](experiments/05_causal_rescue_and_attractors.py) | [Raw JSON Data](experiments/results/run_exp05_causal_rescue_5178fec1-cffc-4cea-a087-8c968ab5c4e5.json)
+
 ---
 
 ## 📄 Working Paper Citation
