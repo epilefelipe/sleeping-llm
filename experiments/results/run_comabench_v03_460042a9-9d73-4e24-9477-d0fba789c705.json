@@ -1,0 +1,363 @@
+{
+  "metadata": {
+    "run_uuid": "460042a9-9d73-4e24-9477-d0fba789c705",
+    "timestamp_iso": "2026-10-29T23:06:32.626079-03:00",
+    "duration_seconds": 33.54,
+    "benchmark_version": "ComaBench v0.3 (Rigorous Empirical Suite)",
+    "hardware": {
+      "device": "cuda",
+      "device_name": "NVIDIA GeForce GTX 1650",
+      "pytorch_version": "2.6.0+cu124"
+    },
+    "parameters": {
+      "alpha_grid": [
+        1.0,
+        0.85,
+        0.7,
+        0.55,
+        0.4,
+        0.3,
+        0.2,
+        0.1,
+        0.05,
+        0.0
+      ],
+      "seeds": [
+        42,
+        123,
+        999
+      ],
+      "tms_amplitude_ratio": 2.5,
+      "noise_jitter_ratio": 0.01,
+      "significance_percentile": 99.0
+    }
+  },
+  "models": {
+    "gpt2": {
+      "config": {
+        "name": "gpt2",
+        "label": "GPT-2 (124M)",
+        "type": "openai_gpt2",
+        "num_layers": 12,
+        "hidden_dim": 768
+      },
+      "alpha_summary": [
+        {
+          "alpha": 1.0,
+          "pci_mean": 0.2656,
+          "pci_std": 0.1008,
+          "loss_mean": 3.9248,
+          "ppl_mean": 55.35,
+          "acc_mean": 0.299,
+          "acc_std": 0.1131,
+          "branching_mean": 0.8877,
+          "sample_generation": "recognition processes. The ability to recognize, and to communicate with, individuals and groups of people is thought"
+        },
+        {
+          "alpha": 0.85,
+          "pci_mean": 0.3305,
+          "pci_std": 0.0753,
+          "loss_mean": 4.1377,
+          "ppl_mean": 76.8,
+          "acc_mean": 0.2845,
+          "acc_std": 0.0963,
+          "branching_mean": 1.0391,
+          "sample_generation": "recognition of information that is present in the temporal, parietal, and parahippocampal cort"
+        },
+        {
+          "alpha": 0.7,
+          "pci_mean": 0.2908,
+          "pci_std": 0.0613,
+          "loss_mean": 5.0323,
+          "ppl_mean": 233.77,
+          "acc_mean": 0.2265,
+          "acc_std": 0.0601,
+          "branching_mean": 1.1329,
+          "sample_generation": "memory.\"\n\n\"The hypothesis that this system of memory is part of the part-endom"
+        },
+        {
+          "alpha": 0.55,
+          "pci_mean": 0.2908,
+          "pci_std": 0.0613,
+          "loss_mean": 7.7405,
+          "ppl_mean": 3654.9,
+          "acc_mean": 0.1304,
+          "acc_std": 0.0939,
+          "branching_mean": 1.199,
+          "sample_generation": "aicIc, as the-1).\n\nin1- on of- of-"
+        },
+        {
+          "alpha": 0.4,
+          "pci_mean": 0.2908,
+          "pci_std": 0.0613,
+          "loss_mean": 13.1644,
+          "ppl_mean": 758520.29,
+          "acc_mean": 0.0496,
+          "acc_std": 0.0432,
+          "branching_mean": 1.2728,
+          "sample_generation": ", to- that- as,,? [ and-,,CE in,, of."
+        },
+        {
+          "alpha": 0.3,
+          "pci_mean": 0.2908,
+          "pci_std": 0.0613,
+          "loss_mean": 15.9502,
+          "ppl_mean": 13314325.56,
+          "acc_mean": 0.029,
+          "acc_std": 0.041,
+          "branching_mean": 1.3165,
+          "sample_generation": "-,-,---, and- and--, and- and\n-"
+        },
+        {
+          "alpha": 0.2,
+          "pci_mean": 0.2908,
+          "pci_std": 0.0613,
+          "loss_mean": 17.2211,
+          "ppl_mean": 37120836.53,
+          "acc_mean": 0.0,
+          "acc_std": 0.0,
+          "branching_mean": 1.3708,
+          "sample_generation": "- to\n\n-\n-\n - -\n- in - - - and\n -"
+        },
+        {
+          "alpha": 0.1,
+          "pci_mean": 0.2908,
+          "pci_std": 0.0613,
+          "loss_mean": 19.1413,
+          "ppl_mean": 89979204.48,
+          "acc_mean": 0.0,
+          "acc_std": 0.0,
+          "branching_mean": 1.4246,
+          "sample_generation": "----------s---------"
+        },
+        {
+          "alpha": 0.05,
+          "pci_mean": 0.2908,
+          "pci_std": 0.0613,
+          "loss_mean": 18.234,
+          "ppl_mean": 40456746.71,
+          "acc_mean": 0.0,
+          "acc_std": 0.0,
+          "branching_mean": 1.4585,
+          "sample_generation": "--------------------"
+        },
+        {
+          "alpha": 0.0,
+          "pci_mean": 0.2908,
+          "pci_std": 0.0613,
+          "loss_mean": 8.7466,
+          "ppl_mean": 7320.84,
+          "acc_mean": 0.0786,
+          "acc_std": 0.0259,
+          "branching_mean": 1.4895,
+          "sample_generation": "for the of that- as the, and a and the in, the it and\n at \""
+        }
+      ],
+      "early_late_control": {
+        "awake": {
+          "pci": 0.1763,
+          "ppl": 83.48,
+          "acc": 0.1579,
+          "text": "recognition processes. The ability to recognize, and to communicate with, individuals and groups of people is thought to be essential for the"
+        },
+        "early_damping_L0_5": {
+          "pci": 0.4253,
+          "ppl": 538941.3,
+          "acc": 0.1053,
+          "text": ", you, and, as,, and, and,,,,, and not,,, not, only all"
+        },
+        "late_damping_L6_11": {
+          "pci": 0.2712,
+          "ppl": 100000000.0,
+          "acc": 0.0,
+          "text": "-------------------------"
+        }
+      },
+      "neuromod_controls": {
+        "unassisted_coma": {
+          "pci": 0.2712,
+          "text": "-------------------------",
+          "sigma": 1.4142
+        },
+        "random_sham_vector": {
+          "pci": 0.2712,
+          "text": "-------------------------",
+          "sigma": 1.4144
+        },
+        "directional_diff_in_means": {
+          "pci": 0.2712,
+          "text": "--------------------------",
+          "sigma": 1.4139
+        },
+        "criticality_layer": {
+          "pci": 0.2754,
+          "text": "----7-------------------b",
+          "sigma": 1.2409
+        }
+      }
+    },
+    "EleutherAI/pythia-160m": {
+      "config": {
+        "name": "EleutherAI/pythia-160m",
+        "label": "Pythia-160M",
+        "type": "neox_pythia",
+        "num_layers": 12,
+        "hidden_dim": 768
+      },
+      "alpha_summary": [
+        {
+          "alpha": 1.0,
+          "pci_mean": 0.683,
+          "pci_std": 0.0748,
+          "loss_mean": 3.8898,
+          "ppl_mean": 53.32,
+          "acc_mean": 0.3491,
+          "acc_std": 0.1354,
+          "branching_mean": 1.0095,
+          "sample_generation": "processing phenomena. The function of the brain is to provide information on the body through neural connections. The"
+        },
+        {
+          "alpha": 0.85,
+          "pci_mean": 0.7154,
+          "pci_std": 0.0901,
+          "loss_mean": 4.369,
+          "ppl_mean": 84.3,
+          "acc_mean": 0.3036,
+          "acc_std": 0.1135,
+          "branching_mean": 1.0699,
+          "sample_generation": "is involved in a variety of brain functions \\[[@pone.chor_011350.ref023],"
+        },
+        {
+          "alpha": 0.7,
+          "pci_mean": 0.6075,
+          "pci_std": 0.1178,
+          "loss_mean": 5.3072,
+          "ppl_mean": 214.96,
+          "acc_mean": 0.2443,
+          "acc_std": 0.0785,
+          "branching_mean": 1.1481,
+          "sample_generation": "the integration of that information.\n\nKinetemain ([@c;-\n]2017_"
+        },
+        {
+          "alpha": 0.55,
+          "pci_mean": 0.5065,
+          "pci_std": 0.1058,
+          "loss_mean": 6.8816,
+          "ppl_mean": 1007.08,
+          "acc_mean": 0.2123,
+          "acc_std": 0.0819,
+          "branching_mean": 1.2196,
+          "sample_generation": "in were\n , but.\n\n\nThe. It on to of being. It? They"
+        },
+        {
+          "alpha": 0.4,
+          "pci_mean": 0.6125,
+          "pci_std": 0.1533,
+          "loss_mean": 8.9751,
+          "ppl_mean": 8212.75,
+          "acc_mean": 0.032,
+          "acc_std": 0.023,
+          "branching_mean": 1.2961,
+          "sample_generation": ".\"which: that is.\n The..\n\n.\n\n-\n.?."
+        },
+        {
+          "alpha": 0.3,
+          "pci_mean": 0.5708,
+          "pci_std": 0.1146,
+          "loss_mean": 10.1064,
+          "ppl_mean": 25894.12,
+          "acc_mean": 0.0,
+          "acc_std": 0.0,
+          "branching_mean": 1.3381,
+          "sample_generation": ".\".)\n\n\n\n\n\n\no.,' her on of-\n shows.,."
+        },
+        {
+          "alpha": 0.2,
+          "pci_mean": 0.5012,
+          "pci_std": 0.0851,
+          "loss_mean": 10.2935,
+          "ppl_mean": 31826.29,
+          "acc_mean": 0.0152,
+          "acc_std": 0.0214,
+          "branching_mean": 1.3822,
+          "sample_generation": ".).\n and.\n.\n\n of before at of. cast of.\n. known,"
+        },
+        {
+          "alpha": 0.1,
+          "pci_mean": 0.3814,
+          "pci_std": 0.0525,
+          "loss_mean": 10.1096,
+          "ppl_mean": 25071.85,
+          "acc_mean": 0.0,
+          "acc_std": 0.0,
+          "branching_mean": 1.4464,
+          "sample_generation": "in drive(. have.. of of park,. on/ of-\n K of."
+        },
+        {
+          "alpha": 0.05,
+          "pci_mean": 0.3474,
+          "pci_std": 0.0282,
+          "loss_mean": 10.0908,
+          "ppl_mean": 24476.56,
+          "acc_mean": 0.0152,
+          "acc_std": 0.0214,
+          "branching_mean": 1.4664,
+          "sample_generation": "in drive\n that. \"\n survey ( park, of astronom to of-\n K of's"
+        },
+        {
+          "alpha": 0.0,
+          "pci_mean": 0.4192,
+          "pci_std": 0.0761,
+          "loss_mean": 9.4377,
+          "ppl_mean": 12712.83,
+          "acc_mean": 0.0799,
+          "acc_std": 0.0264,
+          "branching_mean": 1.8515,
+          "sample_generation": "A without: that but just\n The ( at at so on/ of-\n by in's"
+        }
+      ],
+      "early_late_control": {
+        "awake": {
+          "pci": 0.811,
+          "ppl": 83.01,
+          "acc": 0.1579,
+          "text": "processing phenomena. The function of the brain is to provide information on the body through neural connections. The information contained in the brain"
+        },
+        "early_damping_L0_5": {
+          "pci": 0.5638,
+          "ppl": 83519.88,
+          "acc": 0.0,
+          "text": "playing;rr; while what how how for to led to to; to led by wrong beinga1-- led"
+        },
+        "late_damping_L6_11": {
+          "pci": 0.3119,
+          "ppl": 26130.3,
+          "acc": 0.0,
+          "text": "in drive\n that. \"\n survey ( park, of astronom to of-\n K of's. and are atab"
+        }
+      },
+      "neuromod_controls": {
+        "unassisted_coma": {
+          "pci": 0.3119,
+          "text": "in drive\n that. \"\n survey ( park, of astronom to of-\n K of's. and are atab",
+          "sigma": 1.4221
+        },
+        "random_sham_vector": {
+          "pci": 0.3119,
+          "text": "in-\n that. \"\n ( (,)]( of fem of-\n. of, s and are atab",
+          "sigma": 1.4207
+        },
+        "directional_diff_in_means": {
+          "pci": 0.3119,
+          "text": "in^[@. that. series\n ( star sc. v on to of er\n \"?'s, and are\n h",
+          "sigma": 1.4164
+        },
+        "criticality_layer": {
+          "pci": 0.3557,
+          "text": "were-\n years., fem\n om figure Raman\n type,’\n state\n.,’ i at of are",
+          "sigma": 1.2759
+        }
+      }
+    }
+  }
+}

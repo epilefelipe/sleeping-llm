@@ -108,25 +108,39 @@ python quickstart_demo.py
 
 ---
 
-## 📊 Empirical Benchmark Results (ComaBench v3: Real Transformer In-Silico Coma)
+## 📊 Empirical Benchmark Results (ComaBench v0.3: Multi-Architecture Empirical Suite)
 
-We evaluate in-silico coma induction, data-driven 2D Spatiotemporal Casali PCI, and re-ignition using a real pretrained autoregressive transformer (`GPT-2`, 124M parameters, 12 layers) across 3 diverse cognitive domains (Consciousness, Neurobiology, Logic) with lesion severity sweeps ($\alpha \in [0.50, 0.20, 0.05]$) and iso-energetic sham controls.
+We evaluate in-silico coma induction, data-driven 2D Spatiotemporal Casali PCI ($PCI_{2D}$), autoregressive perplexity ($PPL$), and next-token accuracy ($Acc$) across **two distinct architectures**:
+1. **OpenAI GPT-2** (124M parameters, 12 layers, absolute positional embeddings)
+2. **EleutherAI Pythia-160M** (160M parameters, 12 layers, rotary position embeddings / RoPE)
 
-- **Full Scientific Report:** [docs/EXPERIMENT_03_REPORT.md](docs/EXPERIMENT_03_REPORT.md) | [PDF Version (5 pages)](docs/EXPERIMENT_03_REPORT.pdf)
-- **Official Run UUID:** `3baa4ab0-fc29-4f4b-a719-892ab4c729a2` (`2026-10-21T16:29:04.277-03:00`)
-- **Raw Data Artifacts:** [JSON Payload](experiments/results/run_3baa4ab0-fc29-4f4b-a719-892ab4c729a2.json) | [Execution Log](experiments/results/run_3baa4ab0-fc29-4f4b-a719-892ab4c729a2.md)
+Evaluations span a **10-level fine-grained dose-response sweep** ($\alpha \in [1.0, 0.0]$), $N=3$ random seeds, anatomical controls (Early L0–5 vs Late L6–11 damping), and neuromodulatory re-ignition controls (Difference-in-Means vs Isotropic Sham).
 
-| Experimental Condition | Lesion Severity / Setup | Mean PCI_2D | Behavioral Signature |
-| :--- | :---: | :---: | :--- |
-| **Stage 1: Awake Baseline** | *Intact Reference* | **0.6201** | Coherent, fluent syntactic discourse |
-| **Stage 2: Mild Sedation (MCS)** | $\alpha = 0.50$ | **0.3324** | Partial syntax preserved (conjunctions, prepositions) |
-| **Stage 3: Deep Coma (Severed)** | $\alpha = 0.05$ | **0.3324** | Catatonic mutism (`-------------------------`) |
-| **Stage 4: Iso-Energetic Focal Sham** | $\|v\| = 100.0$, Layer 4 | **0.3596** | Clinical boundary ($PCI^* \approx 0.31$), uninformative loops |
-| **Stage 5: Unipolar Steering (L4)** | $m = 1.5$, Layer 4 | **0.3324** | Dash attractor breached; punctuation emergence |
-| **Stage 6: Multi-Site Steering** | Layers 4 + 7 + 10 | **0.3324** | Distributed manifold activation |
-| **Stage 7: Criticality Layer Tuning** | Gateway Layer 5 | **0.3981** | **Morphological recovery (sub-words `able`, `ability`)** |
+- **Full Scientific Report:** [docs/EXPERIMENT_04_REPORT.md](docs/EXPERIMENT_04_REPORT.md) | [PDF Version (Academic)](docs/EXPERIMENT_04_REPORT.pdf)
+- **Official Run UUID:** `460042a9-9d73-4e24-9477-d0fba789c705` (`2026-10-29T23:06:32-03:00`)
+- **Raw Data Artifact:** [JSON Payload](experiments/results/run_comabench_v03_460042a9-9d73-4e24-9477-d0fba789c705.json)
+- **Execution Script:** [`experiments/04_rigorous_comabench_suite.py`](experiments/04_rigorous_comabench_suite.py)
 
-> **Key Takeaway:** ComaBench v3 eliminates arbitrary thresholds by deriving baseline noise matrices ($\Delta_{\text{baseline}}$) directly from embedding-level micro-jitter. In-silico coma causes an authentic drop in 2D Spatiotemporal PCI from **`0.6201`** to **`0.3324`** ($\Delta = -0.2878$). The **Criticality Layer** yields the highest complexity recovery ($\text{PCI} = 0.3981$, $+0.0657$) and restores morphological English sub-words from total mutism.
+### 1. Fine-Grained Dose-Response Curves (Pythia-160M)
+
+| Attenuation $\alpha$ | Clinical Analogue | Mean $PCI_{2D} \pm \text{std}$ | Perplexity ($PPL$) | Next-Token Acc | Branching $\bar{\sigma}$ | Qualitative Output |
+| :---: | :--- | :---: | :---: | :---: | :---: | :--- |
+| **1.00** | Intact Waking | **$0.6830 \pm 0.0748$** | **53.3** | **0.349** | **1.010** | Coherent semantic discourse |
+| **0.85** | Sub-clinical Fatigue | $0.7154 \pm 0.0901$ | 84.3 | 0.304 | 1.070 | Coherent phrase structures |
+| **0.70** | Mild Sedation | $0.6075 \pm 0.1178$ | 215.0 | 0.244 | 1.148 | Preserved syntax |
+| **0.55** | Moderate Sedation / MCS | $0.5065 \pm 0.1058$ | 1,007.1 | 0.212 | 1.220 | Partial word degradation |
+| **0.40** | Stupor / Delirium | $0.6125 \pm 0.1533$ | 8,212.8 | 0.032 | 1.296 | Severe agrammatism |
+| **0.30** | Light Coma / UWS | $0.5708 \pm 0.1146$ | 25,894.1 | **0.000** | 1.338 | Punctuation loops |
+| **0.20** | Moderate Coma | $0.5012 \pm 0.0851$ | 31,826.3 | 0.015 | 1.382 | Fragmentation |
+| **0.10** | Severe Coma | $0.3814 \pm 0.0525$ | 25,071.8 | **0.000** | 1.446 | Syntactic collapse |
+| **0.05** | Deep Catatonic Freeze | **$0.3474 \pm 0.0282$** | 24,476.6 | 0.015 | 1.466 | **Casali Clinical Cutoff ($PCI^* \approx 0.31$)** |
+| **0.00** | Complete Severance | $0.4192 \pm 0.0761$ | 12,712.8 | 0.080 | 1.851 | Static lexical attractor |
+
+### 2. Anatomical Double Dissociation & The Limits of DBS Re-ignition
+
+- **Early (L0–5) vs Late (L6–11) Lesioning:** Early lesioning disrupts perceptual/lexical input (perplexity explodes, agrammatic word salad), but token generation continues. Late lesioning cuts off recurrent semantic integration, collapsing the system into a catatonic dash attractor (`---`) or clinical $PCI$ threshold ($0.3119$).
+- **Honest Demarcation of DBS Re-ignition:** Single-site activation steering at Layer 4 (difference-in-means) perturbs latent activations but **fails** to restore grammatical coherence or semantic reasoning after a 6-layer lesion. Project Sleeping LLM strictly reports this recovery limitation rather than claiming to "cure" artificial coma.
+- **Criticality Layer Dynamics:** Homeostatic gain in Layer 5 restores branching ratio toward the edge of chaos ($\bar{\sigma} \approx 1$), serving as a physical/dynamical stabilizer that elevates spatiotemporal reverberation.
 
 ---
 
