@@ -1,0 +1,577 @@
+{
+  "metadata": {
+    "run_uuid": "5178fec1-cffc-4cea-a087-8c968ab5c4e5",
+    "timestamp_iso": "2026-10-30T00:08:39.591596-03:00",
+    "duration_seconds": 11.32,
+    "experiment": "Experiment 05 (Mechanistic Attractor Analysis & Causal Rescue)",
+    "model": "gpt2 (124M)",
+    "hardware": "NVIDIA GeForce GTX 1650"
+  },
+  "part1_intervention_comparison": [
+    {
+      "alpha": 1.0,
+      "type_a_state": {
+        "nll": 5.0398,
+        "delta_nll": 0.0,
+        "top1": 0.0909,
+        "text": " processing. The brain is a complex system that is capable of processing complex information"
+      },
+      "type_b_update": {
+        "nll": 5.0398,
+        "delta_nll": 0.0,
+        "top1": 0.0909,
+        "text": " processing. The brain is a complex system that is capable of processing complex information"
+      }
+    },
+    {
+      "alpha": 0.7,
+      "type_a_state": {
+        "nll": 6.3526,
+        "delta_nll": 1.3128,
+        "top1": 0.0909,
+        "text": " information integration on the involved and the under-in-outicula-"
+      },
+      "type_b_update": {
+        "nll": 5.0385,
+        "delta_nll": -0.0013,
+        "top1": 0.0909,
+        "text": " processing. The brain is a complex system that is capable of processing complex information"
+      }
+    },
+    {
+      "alpha": 0.5,
+      "type_a_state": {
+        "nll": 10.9641,
+        "delta_nll": 5.9243,
+        "top1": 0.0,
+        "text": " a,, in as were- to to to to to to to to"
+      },
+      "type_b_update": {
+        "nll": 5.1878,
+        "delta_nll": 0.148,
+        "top1": 0.0909,
+        "text": " processing. The brain is a complex system that is capable of processing information from"
+      }
+    },
+    {
+      "alpha": 0.2,
+      "type_a_state": {
+        "nll": 20.8548,
+        "delta_nll": 15.815,
+        "top1": 0.0,
+        "text": "-\n\n\n\n-\n -\n\n-----"
+      },
+      "type_b_update": {
+        "nll": 6.1391,
+        "delta_nll": 1.0993,
+        "top1": 0.0909,
+        "text": " the ability to communicate with the human brain.\n\nThe most important thing"
+      }
+    },
+    {
+      "alpha": 0.05,
+      "type_a_state": {
+        "nll": 22.4501,
+        "delta_nll": 17.4103,
+        "top1": 0.0,
+        "text": "---------------"
+      },
+      "type_b_update": {
+        "nll": 7.6773,
+        "delta_nll": 2.6375,
+        "top1": 0.0909,
+        "text": " possibly even remotely close proximity to the restructure structure structure structure structure structure structure"
+      }
+    },
+    {
+      "alpha": 0.0,
+      "type_a_state": {
+        "nll": 9.4417,
+        "delta_nll": 4.4019,
+        "top1": 0.0,
+        "text": ",,,,,,,,,,,,,,,"
+      },
+      "type_b_update": {
+        "nll": 9.1474,
+        "delta_nll": 4.1076,
+        "top1": 0.0909,
+        "text": " possibly even remotely close proximity proximity proximity proximity proximity proximity proximity proximity proximity proximity proximity"
+      }
+    }
+  ],
+  "part2_attractor_dynamics": {
+    "Greedy (T=0.0)": {
+      "text": "---------------",
+      "steps": [
+        {
+          "step": 1,
+          "token": "-",
+          "entropy_bits": 2.132,
+          "margin": 2.241,
+          "hyphen_prob": 0.73516,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 2,
+          "token": "-",
+          "entropy_bits": 2.204,
+          "margin": 2.163,
+          "hyphen_prob": 0.7239,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 3,
+          "token": "-",
+          "entropy_bits": 2.232,
+          "margin": 2.178,
+          "hyphen_prob": 0.72164,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 4,
+          "token": "-",
+          "entropy_bits": 2.277,
+          "margin": 2.17,
+          "hyphen_prob": 0.71595,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 5,
+          "token": "-",
+          "entropy_bits": 2.317,
+          "margin": 2.182,
+          "hyphen_prob": 0.71208,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 6,
+          "token": "-",
+          "entropy_bits": 2.363,
+          "margin": 2.162,
+          "hyphen_prob": 0.70596,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 7,
+          "token": "-",
+          "entropy_bits": 2.382,
+          "margin": 2.166,
+          "hyphen_prob": 0.70418,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 8,
+          "token": "-",
+          "entropy_bits": 2.377,
+          "margin": 2.194,
+          "hyphen_prob": 0.7066,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 9,
+          "token": "-",
+          "entropy_bits": 2.362,
+          "margin": 2.232,
+          "hyphen_prob": 0.7105,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 10,
+          "token": "-",
+          "entropy_bits": 2.345,
+          "margin": 2.278,
+          "hyphen_prob": 0.71515,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 11,
+          "token": "-",
+          "entropy_bits": 2.325,
+          "margin": 2.333,
+          "hyphen_prob": 0.72026,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 12,
+          "token": "-",
+          "entropy_bits": 2.303,
+          "margin": 2.397,
+          "hyphen_prob": 0.72596,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 13,
+          "token": "-",
+          "entropy_bits": 2.276,
+          "margin": 2.465,
+          "hyphen_prob": 0.73214,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 14,
+          "token": "-",
+          "entropy_bits": 2.245,
+          "margin": 2.533,
+          "hyphen_prob": 0.73848,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 15,
+          "token": "-",
+          "entropy_bits": 2.215,
+          "margin": 2.597,
+          "hyphen_prob": 0.74448,
+          "hyphen_rank": 1
+        }
+      ]
+    },
+    "Sampling (T=0.7)": {
+      "text": "---------------",
+      "steps": [
+        {
+          "step": 1,
+          "token": "-",
+          "entropy_bits": 2.132,
+          "margin": 2.241,
+          "hyphen_prob": 0.73516,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 2,
+          "token": "-",
+          "entropy_bits": 2.204,
+          "margin": 2.163,
+          "hyphen_prob": 0.7239,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 3,
+          "token": "-",
+          "entropy_bits": 2.232,
+          "margin": 2.178,
+          "hyphen_prob": 0.72164,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 4,
+          "token": "-",
+          "entropy_bits": 2.277,
+          "margin": 2.17,
+          "hyphen_prob": 0.71595,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 5,
+          "token": "-",
+          "entropy_bits": 2.317,
+          "margin": 2.182,
+          "hyphen_prob": 0.71208,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 6,
+          "token": "-",
+          "entropy_bits": 2.363,
+          "margin": 2.162,
+          "hyphen_prob": 0.70596,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 7,
+          "token": "-",
+          "entropy_bits": 2.382,
+          "margin": 2.166,
+          "hyphen_prob": 0.70418,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 8,
+          "token": "-",
+          "entropy_bits": 2.377,
+          "margin": 2.194,
+          "hyphen_prob": 0.7066,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 9,
+          "token": "-",
+          "entropy_bits": 2.362,
+          "margin": 2.232,
+          "hyphen_prob": 0.7105,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 10,
+          "token": "-",
+          "entropy_bits": 2.345,
+          "margin": 2.278,
+          "hyphen_prob": 0.71515,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 11,
+          "token": "-",
+          "entropy_bits": 2.325,
+          "margin": 2.333,
+          "hyphen_prob": 0.72026,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 12,
+          "token": "-",
+          "entropy_bits": 2.303,
+          "margin": 2.397,
+          "hyphen_prob": 0.72596,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 13,
+          "token": "-",
+          "entropy_bits": 2.276,
+          "margin": 2.465,
+          "hyphen_prob": 0.73214,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 14,
+          "token": "-",
+          "entropy_bits": 2.245,
+          "margin": 2.533,
+          "hyphen_prob": 0.73848,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 15,
+          "token": "-",
+          "entropy_bits": 2.215,
+          "margin": 2.597,
+          "hyphen_prob": 0.74448,
+          "hyphen_rank": 1
+        }
+      ]
+    },
+    "High Temp (T=1.2)": {
+      "text": "-x-------7s-x-or",
+      "steps": [
+        {
+          "step": 1,
+          "token": "-",
+          "entropy_bits": 2.132,
+          "margin": 2.241,
+          "hyphen_prob": 0.73516,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 2,
+          "token": "x",
+          "entropy_bits": 2.204,
+          "margin": 2.163,
+          "hyphen_prob": 0.7239,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 3,
+          "token": "-",
+          "entropy_bits": 2.114,
+          "margin": 2.37,
+          "hyphen_prob": 0.74364,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 4,
+          "token": "-",
+          "entropy_bits": 1.991,
+          "margin": 2.414,
+          "hyphen_prob": 0.76042,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 5,
+          "token": "-",
+          "entropy_bits": 2.095,
+          "margin": 2.414,
+          "hyphen_prob": 0.74856,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 6,
+          "token": "-",
+          "entropy_bits": 2.134,
+          "margin": 2.447,
+          "hyphen_prob": 0.74542,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 7,
+          "token": "-",
+          "entropy_bits": 2.23,
+          "margin": 2.395,
+          "hyphen_prob": 0.73227,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 8,
+          "token": "-",
+          "entropy_bits": 2.236,
+          "margin": 2.334,
+          "hyphen_prob": 0.72921,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 9,
+          "token": "-",
+          "entropy_bits": 2.295,
+          "margin": 2.293,
+          "hyphen_prob": 0.7204,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 10,
+          "token": "7",
+          "entropy_bits": 2.291,
+          "margin": 2.336,
+          "hyphen_prob": 0.72292,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 11,
+          "token": "s",
+          "entropy_bits": 2.256,
+          "margin": 2.373,
+          "hyphen_prob": 0.72883,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 12,
+          "token": "-",
+          "entropy_bits": 2.2,
+          "margin": 2.406,
+          "hyphen_prob": 0.73707,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 13,
+          "token": "x",
+          "entropy_bits": 2.166,
+          "margin": 2.439,
+          "hyphen_prob": 0.74261,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 14,
+          "token": "-",
+          "entropy_bits": 2.182,
+          "margin": 2.412,
+          "hyphen_prob": 0.73984,
+          "hyphen_rank": 1
+        },
+        {
+          "step": 15,
+          "token": "or",
+          "entropy_bits": 2.118,
+          "margin": 2.529,
+          "hyphen_prob": 0.75204,
+          "hyphen_rank": 1
+        }
+      ]
+    }
+  },
+  "part3_causal_rescue": {
+    "train_domain": {
+      "test_label": "Train Domain Prompt",
+      "prompt": "The human brain in a conscious state is characterized by complex information integration and",
+      "awake": {
+        "nll": 5.0398,
+        "ppl": 154.44,
+        "top1_acc": 0.0909,
+        "top5_acc": 0.3636,
+        "mean_logit_entropy": 4.431,
+        "delta_nll": 0.0
+      },
+      "coma": {
+        "nll": 22.4501,
+        "ppl": 100000000.0,
+        "top1_acc": 0.0,
+        "top5_acc": 0.0909,
+        "mean_logit_entropy": 1.4005,
+        "delta_nll": 17.4103,
+        "text": "---------------"
+      },
+      "static_steer": {
+        "nll": 22.5172,
+        "ppl": 100000000.0,
+        "top1_acc": 0.0,
+        "top5_acc": 0.0909,
+        "mean_logit_entropy": 1.4533,
+        "delta_nll": 17.4774,
+        "text": "---------------"
+      },
+      "causal_patch_l6": {
+        "nll": 16.6654,
+        "ppl": 17285763.98,
+        "top1_acc": 0.0,
+        "top5_acc": 0.0909,
+        "mean_logit_entropy": 1.8011,
+        "delta_nll": 11.6256,
+        "text": "---------------"
+      },
+      "causal_patch_all_severed": {
+        "nll": 7.7541,
+        "ppl": 2331.08,
+        "top1_acc": 0.0909,
+        "top5_acc": 0.2727,
+        "mean_logit_entropy": 7.3211,
+        "delta_nll": 2.7143,
+        "text": " the, and,, the,. the,.\n---"
+      }
+    },
+    "unseen_domain": {
+      "test_label": "Unseen Physics Domain Prompt",
+      "prompt": "In theoretical physics, dynamical systems poised near the edge of chaos maximize computational",
+      "awake": {
+        "nll": 4.3802,
+        "ppl": 79.85,
+        "top1_acc": 0.1667,
+        "top5_acc": 0.5,
+        "mean_logit_entropy": 3.386,
+        "delta_nll": 0.0
+      },
+      "coma": {
+        "nll": 14.0048,
+        "ppl": 1208444.64,
+        "top1_acc": 0.0833,
+        "top5_acc": 0.0833,
+        "mean_logit_entropy": 3.5451,
+        "delta_nll": 9.6246,
+        "text": "---------------"
+      },
+      "static_steer": {
+        "nll": 13.9354,
+        "ppl": 1127408.77,
+        "top1_acc": 0.0833,
+        "top5_acc": 0.0833,
+        "mean_logit_entropy": 3.612,
+        "delta_nll": 9.5552,
+        "text": "---------------"
+      },
+      "causal_patch_l6": {
+        "nll": 17.0939,
+        "ppl": 26532112.46,
+        "top1_acc": 0.0833,
+        "top5_acc": 0.1667,
+        "mean_logit_entropy": 2.3187,
+        "delta_nll": 12.7137,
+        "text": "---------------"
+      },
+      "causal_patch_all_severed": {
+        "nll": 6.8048,
+        "ppl": 902.21,
+        "top1_acc": 0.1667,
+        "top5_acc": 0.25,
+        "mean_logit_entropy": 7.4493,
+        "delta_nll": 2.4246,
+        "text": " and, the--,,, the,,.\n--"
+      }
+    }
+  }
+}
