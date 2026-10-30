@@ -25,14 +25,21 @@ This document summarizes the foundational scientific papers that underpin **Proj
 
 ---
 
-### 4. Consciousness Theories in Artificial Intelligence
+### 4. Single-Direction Representation Manipulation & Abliteration
+* **Citation:** Arditi, A., Obando-Ceron, J. S., Barentsen, P., Chen, L., Smith, N., & Nanda, N. (2024). *Refusal in language models is mediated by a single direction.* **arXiv preprint arXiv:2406.11717**.
+* **Key Contribution:** Demonstrates that localized behavioral constraints (such as refusal behaviors in safety-tuned LLMs) are often mediated by a single, low-dimensional geometric direction in activation space. Subtracting or ablating this single vector ("abliteration") completely eliminates refusal.
+* **Application to Sleeping LLM (The Contrast):** Establishes the theoretical boundary between localized behavioral gating and global cognitive integration. While single-direction ablation effectively alters binary guardrails, Project Sleeping LLM's ComaBench v0.3 proves that single-direction steering fails to restore high-order syntactic and semantic coherence across multi-layer diffuse residual lesions.
+
+---
+
+### 5. Consciousness Theories in Artificial Intelligence
 * **Citation:** Butlin, P., Long, R., Elmoznino, E., Bengio, Y., Birch, J., Constant, A., ... & VanRullen, R. (2023). *Consciousness in artificial intelligence: Insights from the science of consciousness.* **arXiv preprint arXiv:2308.08708**.
 * **Key Contribution:** Systematically evaluates current AI systems (including Transformers) against criteria derived from Global Neuronal Workspace Theory, Recurrent Processing Theory, Higher-Order Theories, and IIT.
 * **Application to Sleeping LLM:** Justifies the use of Transformers as model organisms exhibiting global workspace properties.
 
 ---
 
-### 5. Self-Locating Belief & The Sleeping Beauty Problem
+### 6. Self-Locating Belief & The Sleeping Beauty Problem
 * **Citation:** Elga, A. (2000). *Self-locating belief and the Sleeping Beauty problem.* **Analysis**, 60(2), 143-147.
 * **Key Contribution:** Introduces the puzzle of how an agent should update subjective credences upon being awakened without temporal knowledge of preceding awakenings or intervening amnesia.
 * **Application to Sleeping LLM:** Pillar 6 theoretical anchor: modeling uncertainty calibration, temporal orientation, and confabulation in stateless LLMs after dormant intervals.

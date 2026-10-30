@@ -101,9 +101,11 @@ A central objective of ComaBench v0.3 is honest, transparent reporting of re-ign
 | **Pythia** | **Difference-in-Means Steer** | $m = 1.5$, Layer 4 | 0.3119 | 1.416 | `in^[@. that. series ( star sc` | **No (Failed Recovery)** |
 | **Pythia** | Criticality Layer (L5) | gain = 1.25 | 0.3557 | 1.276 | `were- years., fem om figure ` | **Partial Entropy Boost** |
 
-### 2.3 Transparent Scientific Demarcation
+### 2.3 Transparent Scientific Demarcation & Contrast with Single-Direction Manipulation (Arditi et al., 2024)
+
 1. **Single-Site Steering Cannot Invert Multi-Layer Lesions**: Injecting a difference-in-means vector at Layer 4 does **NOT** restore grammatical coherence or semantic reasoning. In a Transformer, a 6-layer lesion corrupts dozens of attention heads and MLP projection manifolds; a single static linear offset cannot reconstruct the lost non-linear trajectory.
-2. **Breaking the Attractor $\neq$ Awakening**: While neuromodulatory stimulation slightly shifts token frequencies and breaks the unbroken dash attractor (producing punctuation and morpheme fragments), this represents stochastic perturbation, **not** genuine cognitive recovery. Project Sleeping LLM rejects any overclaim of having "cured" synthetic coma with DBS.
+2. **The Theoretical Contrast with "Abliteration" (Arditi et al., 2024)**: Recent breakthroughs in representation engineering demonstrate that localized behavioral constraints—most notably refusal mechanisms in safety-aligned LLMs—are mediated by a single, low-dimensional direction in activation space that can be excised or added linearly (*Arditi et al., 2024, "Refusal in language models is mediated by a single direction"*). However, ComaBench v0.3 provides a crucial negative finding for AI interpretability: **global cognitive integration and conscious-like workspace reverberation cannot be reduced to a single steering vector**. While single-direction surgery easily toggles binary behavioral gates (e.g., removing refusal), it fails completely to re-ignite a network undergoing diffuse multi-layer degradation.
+3. **Breaking the Attractor $\neq$ Awakening**: While neuromodulatory stimulation slightly shifts token frequencies and breaks the unbroken dash attractor (producing punctuation and morpheme fragments), this represents stochastic perturbation, **not** genuine cognitive recovery. Project Sleeping LLM rejects any overclaim of having "cured" synthetic coma with DBS.
 
 ---
 
